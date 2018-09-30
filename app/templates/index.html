@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Roo-Ins</title>
+    <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+		">
+		
+		<link rel="stylesheet" href="../static/lib/weui.min.css">
+		<link rel="stylesheet" href="../static/css/jquery-weui.css">
+		<link rel="stylesheet" href="../static/mycss/demos.css">
+  </head>
+
+  <body ontouchstart>
+  	
+    <div class="weui-tab">
+      <div class="weui-tab__bd">
+      	<!--页面一-->
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          <header class='demos-header'>
+			      <h1 class="demos-title">袋鼠邻居</h1>
+			      <p class='demos-sub-title'>免排队，可预约的共享打印</p>
+			    </header>
+			    <table bordercolor="1px" cellspacing="40px" cellpadding="0px"  style="border-color: #E9E9E9;margin: auto;">
+			    	<tr><td>
+			    		<a href="/select">
+				        <div>
+				          <img src="../static/images/print.png" alt="">
+				        </div>
+				        <p class="weui-grid__label">
+				          	<font size="5" face="arial rounded mt bold">打印入口</font>
+				        </p>
+			      	</a>
+			    	</td></tr>
+			    </table>
+			    <div class="weui-footer">
+			      <p class="weui-footer__links">
+			        <a href="http://jqweui.com" class="weui-footer__link">Roo-Ins首页</a>
+			      </p>
+			      <p class="weui-footer__text">Copyright © 2018 rooins.com</p>
+    			</div>
+        </div>
+        
+        <!--页面二-->
+        <div id="tab2" class="weui-tab__bd-item">
+          <div class="weui-search-bar" id="searchBar">
+			      <form class="weui-search-bar__form" action="#">
+			        <div class="weui-search-bar__box">
+			          <i class="weui-icon-search"></i>
+			          <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+			          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+			        </div>
+			        <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+			          <i class="weui-icon-search"></i>
+			          <span>搜索</span>
+			        </label>
+			      </form>
+			      <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+			    </div>
+			    开发中......
+        </div>
+        
+        <!--页面三-->
+        <div id="tab3" class="weui-tab__bd-item">
+          <header class='demos-header'>
+			      <h1 class="demos-title">历史订单</h1>
+			    </header>
+			    <div class="weui-form-preview">
+			      <div class="weui-form-preview__hd">
+			        <label class="weui-form-preview__label">付款金额</label>
+			        <em class="weui-form-preview__value">¥66.60</em>
+			      </div>
+			      <div class="weui-form-preview__bd">
+			        <div class="weui-form-preview__item">
+			          <label class="weui-form-preview__label">标题</label>
+			          <span class="weui-form-preview__value">考研啦考研啦考研啦</span>
+			        </div>
+			          <div class="weui-form-preview__item">
+			          <label class="weui-form-preview__label">资料费</label>
+			          <span class="weui-form-preview__value">0元</span>
+			        </div>
+			        <div class="weui-form-preview__item">
+			          <label class="weui-form-preview__label">打印单价</label>
+			          <span class="weui-form-preview__value">0.1元</span>
+			        </div>
+			        <div class="weui-form-preview__item">
+			          <label class="weui-form-preview__label">打印页数</label>
+			          <span class="weui-form-preview__value">666页</span>
+			        </div>
+			      </div>
+			      <div class="weui-form-preview__ft">
+			        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">状态</a>
+			        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</button>
+			      </div>
+			    </div>
+        </div>
+        
+        <!--页面四-->
+        <div id="tab4" class="weui-tab__bd-item">
+          <div class="weui-cells__title">个人主页</div>
+			    <div class="weui-cells">
+			      <div class="weui-cell">
+			        <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+			          <img src="/static/images/pic_160.png" style="width: 50px;display: block;">
+			        </div>
+			        <div class="weui-cell__bd">
+			          <p>用户名</p>
+			          <p style="font-size: 13px;color: #888888;">ID</p>
+			        </div>
+			      </div>
+			      <div class="weui-cell weui-cell_access">
+			        <div class="weui-cell__bd">
+			          <span style="vertical-align: middle">我的消息</span>
+			          <span class="weui-badge" style="margin-left: 5px;">8</span>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			      </div>
+			      <div class="weui-cell weui-cell_access">
+			        <div class="weui-cell__bd">
+			          <span style="vertical-align: middle">卡券红包</span>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			      </div>
+			      <div class="weui-cell weui-cell_access">
+			        <div class="weui-cell__bd">
+			          <span style="vertical-align: middle">定位</span>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			      </div>
+			    </div>
+			    <div class="weui-cells__title"></div>
+			    <div class="weui-cells">
+			      <div class="weui-cell weui-cell_access">
+			        <div class="weui-cell__bd">加盟打印点</div>
+			        <div class="weui-cell__ft" style="font-size: 0">
+			          <span style="vertical-align:middle; font-size: 17px;">详细信息</span>
+			        </div>
+			      </div>
+			      <div class="weui-cell weui-cell_access">
+			        <div class="weui-cell__bd">
+			          <span style="vertical-align: middle">客服与帮助</span>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			      </div>		      
+			    </div>
+        </div>
+
+	      <div class="weui-tabbar">
+	        <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+	          <div class="weui-tabbar__icon">
+	            <img src="/static/images/home.png" alt="">
+	          </div>
+	          <p class="weui-tabbar__label">首页</p>
+	        </a>
+	        <a href="#tab2" class="weui-tabbar__item">
+	        	<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+	          <div class="weui-tabbar__icon">
+	            <img src="../static/images/ziliao.png" alt="">
+	          </div>
+	          <p class="weui-tabbar__label">资料共享</p>
+	        </a>	        
+	        <a href="#tab3" class="weui-tabbar__item">
+	          <div class="weui-tabbar__icon">
+	            <img src="/static/images/icon_nav_article.png" alt="">
+	          </div>
+	          <p class="weui-tabbar__label">订单</p>
+	        </a>
+	        <a href="#tab4" class="weui-tabbar__item">
+	          <div class="weui-tabbar__icon">
+	            <img src="/static/images/people.png" alt="">
+	          </div>
+	          <p class="weui-tabbar__label">我的</p>
+	        </a>
+	      </div>
+	    </div>
+    </div>
+    
+     <style>
+      .weui-footer {
+        margin: 25px 0 10px 0;
+      }
+    </style>
+
+    <script src="../static/lib/jquery-2.1.4.js"></script>
+		<script src="../static/lib/fastclick.js"></script>
+		<script>
+		  $(function() {
+		    FastClick.attach(document.body);
+		  });
+		</script>
+		<script src="../static/js/jquery-weui.js"></script>
+
+  </body>
+</html>
