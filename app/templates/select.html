@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="../static/lib/weui.min.css">
 		<link rel="stylesheet" href="../static/css/jquery-weui.css">
 		<link rel="stylesheet" href="../static/mycss/demos.css">
-
   </head>
 
   <body ontouchstart>
@@ -31,15 +30,15 @@
             </div>
             <div class="weui-uploader__bd">
               <ul class="weui-uploader__files" id="uploaderFiles">
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.png)"></li>
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.png)"></li>
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.png)"></li>
-                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.png)">
+                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
+                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
+                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
+                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">
                   <div class="weui-uploader__file-content">
                     <i class="weui-icon-warn"></i>
                   </div>
                 </li>
-                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.png)">
+                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">
                   <div class="weui-uploader__file-content">50%</div>
                 </li>
               </ul>
@@ -164,7 +163,7 @@
       <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
     </div>
     
-    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <script src="../static/lib/jquery-2.1.4.js""></script>
 		<script src="../static/lib/fastclick.js"></script>
 		<script>
 		  $(function() {
@@ -175,6 +174,31 @@
 
 
     <script>
+    	$(function() {	
+      	$.login({
+          title: '登录',
+          text: '请输入用户名和密码',
+          onOK: function (username, password) {
+            console.log(username, password);
+            $.toast('登录成功!');
+          },
+          onCancel: function () {
+		        $.confirm("手机一键注册", "没有账号?", function() {
+	        	  function skip(){
+	            	window.location.href='/login';
+	            }
+	            setInterval(skip,50);
+		        }, function() {
+		          //取消操作
+		          function skip(){
+	            	window.location.href='/';
+	            }
+	            setInterval(skip,50);
+		        });
+          }
+        });
+     });
+    
       $("#page1").change(function(){
     		var page1 = $('#page1').val();
     		var page2 = $('#page2').val();

@@ -38,7 +38,7 @@
 			    </table>
 			    <div class="weui-footer">
 			      <p class="weui-footer__links">
-			        <a href="http://jqweui.com" class="weui-footer__link">Roo-Ins首页</a>
+			        <a href=" " class="weui-footer__link">Roo-Ins首页</a>
 			      </p>
 			      <p class="weui-footer__text">Copyright © 2018 rooins.com</p>
     			</div>
@@ -104,12 +104,18 @@
 			    <div class="weui-cells">
 			      <div class="weui-cell">
 			        <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-			          <img src="/static/images/pic_160.png" style="width: 50px;display: block;">
+			          <img src="../static/images/pic_160.jpg" style="width: 50px;display: block;">			   
 			        </div>
 			        <div class="weui-cell__bd">
 			          <p>用户名</p>
 			          <p style="font-size: 13px;color: #888888;">ID</p>
 			        </div>
+			      </div>
+			      <div class="weui-cell weui-cell_access" id="login">
+			        <div class="weui-cell__bd">
+			          <span style="vertical-align: middle">注册</span>
+			        </div>
+			        <div class="weui-cell__ft"></div>
 			      </div>
 			      <div class="weui-cell weui-cell_access">
 			        <div class="weui-cell__bd">
@@ -151,26 +157,26 @@
 	      <div class="weui-tabbar">
 	        <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
 	          <div class="weui-tabbar__icon">
-	            <img src="/static/images/home.png" alt="">
+	            <img src="../static/images/home.png" alt="">
 	          </div>
 	          <p class="weui-tabbar__label">首页</p>
 	        </a>
 	        <a href="#tab2" class="weui-tabbar__item">
 	        	<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
 	          <div class="weui-tabbar__icon">
-	            <img src="../static/images/ziliao.png" alt="">
+	            <img src="../static/images/data.png" alt="">
 	          </div>
 	          <p class="weui-tabbar__label">资料共享</p>
 	        </a>	        
 	        <a href="#tab3" class="weui-tabbar__item">
 	          <div class="weui-tabbar__icon">
-	            <img src="/static/images/icon_nav_article.png" alt="">
+	            <img src="../static/images/icon_nav_article.png" alt="">
 	          </div>
 	          <p class="weui-tabbar__label">订单</p>
 	        </a>
 	        <a href="#tab4" class="weui-tabbar__item">
 	          <div class="weui-tabbar__icon">
-	            <img src="/static/images/people.png" alt="">
+	            <img src="../static/images/member.png" alt="">
 	          </div>
 	          <p class="weui-tabbar__label">我的</p>
 	        </a>
@@ -190,6 +196,9 @@
 		  $(function() {
 		    FastClick.attach(document.body);
 		  });
+		  $("#login").click(function(){
+				window.location.href='/login';
+    	});
 		</script>
 		<script src="../static/js/jquery-weui.js"></script>
 

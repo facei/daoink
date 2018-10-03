@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script type="text/javascript">
+        var cur_count;
+        var count = 60; // 重复发送验证码的周期(s)
+        var InterValObj;
+        var phone_number;
+        function send_message()
+        {
+            // 获取用户输入的手机号码
+            // 如果手机号码为空则弹窗提醒
+            // 否则使用 ajax 将号码提交给后台，并且开始倒计时
+            phone_number = document.getElementById("phone").value
+            if(phone_number)
+            {
+                cur_count = count;
+
+                // 设置按钮属性，使按钮不能响应点击事件
+                document.getElementById("getCode").setAttribute("disabled", "true");
+                document.getElementById("getCode").value = "waiting for "+cur_count+"s";
+
+                // HTML DOM setInterval() 方法可以按照指定的周期（毫秒单位）来调用函数或计算表达式
+                // 这里我们以 1000 毫秒为周期重复调用 set_remain_time() 函数实现倒计时
+                InterValObj = window.setInterval(set_remain_time, 1000);
+
+                // 发送请求
+                loadXMLDoc();
+            }
+            else
+            {
+                alert('Please input phone number!')
+            }
+        }
+
+        function set_remain_time()
+        {
+            if (cur_count == 0)
+            {
+                // 将 InterValObj 传递给 clearInterval， 从而取消对 set_remian_time() 的重复调用
+                window.clearInterval(InterValObj);
+
+                // 恢复按钮响应点击事件
+                document.getElementById("getCode").removeAttribute("disabled");
+                document.getElementById("getCode").value = "Get New Code";
+            }else
+            {
+                cur_count--;
+                document.getElementById("getCode").value = "waiting for "+cur_count+"s";
+            }
+        }
+
+        function loadXMLDoc()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "test?mobile_phone_number=" + phone_number, true);
+            xmlhttp.send();
+        }
+    </script>
+
+    <style>
+        #phone{
+            position:relative;
+            top:10px;
+            left:50px;
+            width:210px;
+        }
+        #code{
+            position:relative;
+            top:30px;
+            left:50px;
+            width:100px;
+        }
+        #getCode{
+            position:relative;
+            top:30px;
+            left:50px;
+            width:100px;
+        }
+        #submit{
+            position:relative;
+            top:50px;
+            left:50px;
+            width:210px;
+        }
+        #getCode:hover,#submit:hover{
+            cursor:pointer;
+            background-color:#666;
+            color:#FFF;
+        }
+        input,button{
+            border:1px solid #999;
+            height:40px;
+            color:#666;
+        }
+        .h1{
+            position:relative;
+            top:10px;
+            left:130px;
+            color:#666;
+        }
+        .box{
+            top:20%;
+            left:33%;
+            height:300px;
+            width:300px;
+            border:dashed 2px #666;
+            position:absolute;
+        }
+        .warning{
+            position:absolute;
+            left:33%;
+            top:80%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box">
+    <h1 class="h1">Lab</h1>
+    <form action="#" method="post">
+        <div>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number">
+        </div>
+        <div>
+            <input type="text" id="code" name="code" placeholder="Verification Code">
+            <input type="button" id ="getCode" onclick="send_message()" value = "Get Code"/>
+        </div>
+        <div>
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </form>
+
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="color: orangered; font-size: 100%; font-weight: 600">&times;关闭</span></button>
+                <div class="text-center" style="font-weight: 600">{{ message }}</div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+</body>
+</html>
