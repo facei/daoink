@@ -39,11 +39,12 @@ if(UserName === 'null'){
                     }
                     setInterval(skip,50);
                 }, function() {
+                    window.location.href='/';
                     //取消操作
-                    function skip(){
-                        window.location.href='/';
-                    }
-                    setInterval(skip,50);
+                    // function skip(){
+                    //     window.location.href='/';
+                    // }
+                    // setInterval(skip,50);
                 });
             }
         });
