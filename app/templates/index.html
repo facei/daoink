@@ -12,9 +12,13 @@
 		<link rel="stylesheet" href="../static/lib/weui.min.css">
 		<link rel="stylesheet" href="../static/css/jquery-weui.css">
 		<link rel="stylesheet" href="../static/mycss/demos.css">
+		<link rel="stylesheet" href="../static/css/light7.css">
   </head>
 
   <body ontouchstart>
+  <script>
+      var UserName = '{{ g.current_userphone }}' // 后端数据
+  </script>
   	
     <div class="weui-tab">
       <div class="weui-tab__bd">
@@ -103,13 +107,26 @@
           <div class="weui-cells__title">个人主页</div>
 			    <div class="weui-cells">
 			      <div class="weui-cell">
-			        <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-			          <img src="../static/images/pic_160.jpg" style="width: 50px;display: block;">			   
+
+                    <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+			          <img src="../static/images/roo.gif" style="width: 50px;height: 50px;display: block;">
 			        </div>
 			        <div class="weui-cell__bd">
-			          <p>用户名</p>
-			          <p style="font-size: 13px;color: #888888;">ID</p>
+                        <div>
+                          <p>{{ g.current_userphone }}</p>
+                          <p style="font-size: 13px;color: #888888;">余额：{{ g.current_user.Money }}元</p>
+                        </div>
 			        </div>
+                      {% if g.current_userphone != 'null' %}
+                          <div class="weui-cell__ft">
+                              <a href="/logout">退出登陆</a>
+                          </div>
+                      {% else %}
+                          <div class="weui-cell__ft">
+                              <a href="/select">请登陆</a>
+                          </div>
+                      {% endif %}
+
 			      </div>
 			      <div class="weui-cell weui-cell_access" id="login">
 			        <div class="weui-cell__bd">
@@ -197,7 +214,7 @@
 		    FastClick.attach(document.body);
 		  });
 		  $("#login").click(function(){
-				window.location.href='/login';
+				window.location.href='/form';
     	});
 		</script>
 		<script src="../static/js/jquery-weui.js"></script>

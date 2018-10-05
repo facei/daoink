@@ -5,8 +5,8 @@ import requests
 # 请求的头部内容
 # 以下的 Id 与 Key 都是无效的仅做示范，在实际试验中请替换成自己的 Id 与 Key
 headers = {
-    "X-LC-Id": "请替换成自己的App ID",
-    "X-LC-Key": "请替换成自己的App Key",
+    "X-LC-Id": "pq2BaybjAigwb7ATgKO0ggmK-gzGzoHsz",
+    "X-LC-Key": "7VMMYQ8HyXDwNqWksMPjuEsW",
     "Content-Type": "application/json",
 }
 

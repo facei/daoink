@@ -1058,6 +1058,7 @@ button.weui-vcode-btn{
   position:relative;
   margin-right:9px;
   margin-bottom:9px;
+
   width:77px;
   height:77px;
   border:1px solid #D9D9D9;
@@ -1097,6 +1098,8 @@ button.weui-vcode-btn{
   opacity:0;
   -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
 }
+
+
 .weui-msg{
   padding-top:36px;
   text-align:center;
