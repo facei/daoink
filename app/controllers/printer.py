@@ -14,7 +14,7 @@ def select():
     global datetimes
     global now
     datetimes = datetime.datetime.now()
-    now = str(datetimes.year)+"-"+str(datetimes.month)+"-"+str(datetimes.day)+"_"+str(datetimes.hour)+":"+str(datetimes.minute)
+    now = str(datetimes.year)+"-"+str(datetimes.month)+"-"+str(datetimes.day)+"_"+str(datetimes.hour)+"-"+str(datetimes.minute)+"-"+str(datetimes.second)
     if request.method == 'POST':
         printfile = request.files['uploadfile']         # 文件
         place = request.form.get("place")               # 打印点
@@ -31,9 +31,7 @@ def select():
         new_filename = str(g.current_user.Tel_Number)+"_" + now + filename[index_point:]
         # basepath = os.path.dirname(__file__)
         basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-        print basepath
         upload_path = os.path.join(basepath, 'static/Upload_Files', secure_filename(new_filename))
-        print upload_path
         printfile.save(upload_path)
 
 
@@ -54,6 +52,27 @@ def confirm():
     user = User.query.filter(User.Tel_Number == g.current_userphone).first()
     cost = float(cost)
     if cost <= user.Money:
+
+        order_forsql = Order()
+        order_forsql.User_Id = user.Id
+        order_forsql.File_Dir = request.form.get("filename")
+        order_forsql.Time_Way = request.form.get("time_way")
+        order_forsql.Print_Place = request.form.get("place")
+        order_forsql.Print_Copies = request.form.get("copies")
+        order_forsql.Print_Direction = request.form.get("direction")
+        order_forsql.Print_Colour = request.form.get("colour")
+        order_forsql.Print_size = request.form.get("paper_size")
+        order_forsql.Print_way = request.form.get("print_way")
+        order_forsql.Print_Money = request.form.get("cost")
+        order_forsql.Print_Status = 1
+
+        db.session.add(order_forsql)
+        db.session.commit()
+
+        user.Money = round(user.Money - float(request.form.get("cost")), 1)
+        db.session.add(user)
+        db.session.commit()
+
         result = 1
         return render_template("result.html", result=result)
     else:

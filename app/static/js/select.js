@@ -34,10 +34,10 @@ if(UserName === 'null'){
             },
             onCancel: function () {
                 $.confirm("手机一键注册", "没有账号?", function() {
-                    function skip(){
+                    // function skip(){
                         window.location.href='/register';
-                    }
-                    setInterval(skip,50);
+                    // }
+                    // setInterval(skip,50);
                 }, function() {
                     window.location.href='/';
                     //取消操作
