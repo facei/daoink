@@ -23,17 +23,17 @@ class Order(db.Model):
     Id = db.Column(db.Integer(), primary_key=True)
     File_Dir = db.Column(db.String(255), nullable=False)
     Born_Date = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
-    Time_Way = db.Column(db.Integer())
-    Print_Date = db.Column(db.DateTime)
+    Time_Way = db.Column(db.Integer())                              # 打印时间规划方式，自由排队
+    Print_Date = db.Column(db.DateTime)                             # 打印时间点 *
     Print_Place = db.Column(db.String(255), nullable=False)
-    Print_pages = db.Column(db.Integer())                      # 每份页数
-    Print_Copies = db.Column(db.Integer())                     # 份数
+    Print_pages = db.Column(db.Integer())                           # 每份页数  *
+    Print_Copies = db.Column(db.Integer())                          # 份数
     Print_Direction = db.Column(db.String(255), nullable=False)
     Print_Colour = db.Column(db.String(255), nullable=False)
     Print_size = db.Column(db.String(255), nullable=False)
-    Print_way = db.Column(db.String(255), nullable=False)
-    Print_Money = db.Column(db.Float())                         # 订单价格
-    Print_Status = db.Column(db.Integer(), default=0)          # 订单状态，0 未支付, 1 已经打印,2 未打印
+    Print_way = db.Column(db.String(255), nullable=False)           # 打印的方式，单面或双面
+    Print_Money = db.Column(db.Float())                             # 订单价格
+    Print_Status = db.Column(db.Integer(), default=0)               # 订单状态，0:未支付, 1:已经支付但未打印, 2:已经打印
 
 
     User_Id = db.Column(db.Integer(), db.ForeignKey('User.Id'), nullable=False)
