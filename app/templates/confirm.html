@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+    <link rel="stylesheet" href="../static/lib/weui.min.css">
+    <link rel="stylesheet" href="../static/css/jquery-weui.css">
+    <link rel="stylesheet" href="../static/mycss/demos.css">
+    <link rel="stylesheet" href="../static/css/light7.css">
+</head>
+<body>
+    <header class='demos-header'>
+        <h1 class="demos-title">确认订单</h1>
+    </header>
+    <div >
+        <form method="post" action="/confirm">
+            <label>订单信息：</label>
+            <h4>文件名:{{ data["printfile"].filename }}</h4>
+            <h4>打印点:{{ data["place"] }}</h4>
+            <h4>打印份数:{{ data["copies"] }}</h4>
+            <h4>预约方式:{{ data["time_way"] }}</h4>
+            <hr>
+            <h4>总价:{{ data["cost"] }}</h4>
+
+            <input type="hidden" name="filename" value="{{ data["printfile"].filename }}">
+            <input type="hidden" name="place" value="{{ data["place"] }}">
+            <input type="hidden" name="copies" value="{{ data["copies"] }}">
+            <input type="hidden" name="direction" value="{{ data["direction"] }}">
+            <input type="hidden" name="colour" value="{{ data["colour"] }}">
+            <input type="hidden" name="paper_size" value="{{ data["paper_size"] }}">
+            <input type="hidden" name="print_way" value="{{ data["print_way"] }}">
+            <input type="hidden" name="time_way" value="{{ data["time_way"] }}">
+            <input type="hidden" name="cost" value="{{ data["cost"] }}">
+            <div>
+                <input type="submit", value="确认从账户余额支付">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

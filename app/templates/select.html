@@ -12,158 +12,181 @@
 		<link rel="stylesheet" href="../static/lib/weui.min.css">
 		<link rel="stylesheet" href="../static/css/jquery-weui.css">
 		<link rel="stylesheet" href="../static/mycss/demos.css">
+		<link rel="stylesheet" href="../static/css/light7.css">
   </head>
 
   <body ontouchstart>
-    <header class='demos-header'>
-      <h1 class="demos-second-title">选择打印项</h1>
-    </header>
+  <script>
+{#      alert({{ g.current_userphone }})#}
+      var UserName = '{{ g.current_userphone }}'
+      var time_now = '{{ now }}'
+  </script>
 
-    <div class="weui-cells weui-cells_form">
-    	<!--上传文件-->
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <div class="weui-uploader">
-            <div class="weui-uploader__hd">
-              <p class="weui-uploader__title">文件上传</p>
-              <div class="weui-uploader__info">0/2</div>
-            </div>
-            <div class="weui-uploader__bd">
-              <ul class="weui-uploader__files" id="uploaderFiles">
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
-                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>
-                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">
-                  <div class="weui-uploader__file-content">
-                    <i class="weui-icon-warn"></i>
-                  </div>
-                </li>
-                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">
-                  <div class="weui-uploader__file-content">50%</div>
-                </li>
-              </ul>
-              <div class="weui-uploader__input-box">
-                <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-			<!--打印点选择-->
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="name" class="weui-label">打印点</label></div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" id="place" type="text" value="">
-        </div>
-      </div>
-      <!--打印时间选择-->
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="time" class="weui-label">预约时间</label></div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" id="time" type="text" value="">
-        </div>
-      </div>
-      <div class="weui-cell weui-cell_switch">
-        <div class="weui-cell__bd">自动排队</div>
-        <div class="weui-cells__tips">打开将忽视预约时间</div>
-        <div class="weui-cell__ft">
-          <input class="weui-switch" type="checkbox">
-        </div>
-      </div>
-      <!--打印页数选择-->
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">起始页设置</label></div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" type="number" id="page1" oninput="value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-        </div>
-      </div>
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">结束页设置</label></div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" type="number" id="page2" oninput="value.replace(/[^\d]/g,'')" placeholder="请输入数字">
-        </div>
-      </div>
-      <!--打印份数选择-->
-	    <div class="weui-cell">
-	      <div class="weui-cell__bd">
-	        <p>打印份数</p>
-	      </div>
-	      <div class="weui-cell__ft">
-	        <div class="weui-count">
-	          <a class="weui-count__btn weui-count__decrease"></a>
-	          <input class="weui-count__number" type="text" id="copies" value="1" />
-	          <a class="weui-count__btn weui-count__increase"></a>
+    {#    <div id="dataid" d="{{ g.current_username }}" style="display:none"></div>   {# 后端数据#}
+
+  	<!--导航栏-->
+	  <header class="bar bar-nav">
+	    <a class="button button-link button-nav pull-left back" href="/">
+	      <span class="icon icon-left"></span>
+	      Back
+	    </a>
+	    <h1 class="title"></h1>
+	  </header>
+	  
+	  <form method="post" enctype='multipart/form-data'>
+	    <div class="weui-cells weui-cells_form">
+	    	<!--上传文件-->
+				<header class='demos-header'>
+		      <h1 class="demos-title" style="margin: 0.15em 0;">选择打印项</h1>
+					<p class='demos-sub-title'>免排队，可预约的共享打印</p>
+				</header>
+	      <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	          <div class="weui-uploader">
+	            <div class="weui-uploader__hd">
+	              <p class="weui-uploader__title" >文件上传</p>
+	              <div class="weui-uploader__info">暂只支持单文件上传打印</div>
+	            </div>
+	            <div class="weui-uploader__bd">
+{#	              <ul class="weui-uploader__files" id="uploaderFiles">#}
+{#	                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>#}
+{#	                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>#}
+{#	                <li class="weui-uploader__file" style="background-image:url(../static/images/pic_160.jpg)"></li>#}
+{#	                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">#}
+{#	                  <div class="weui-uploader__file-content">#}
+{#	                    <i class="weui-icon-warn"></i>#}
+{#	                  </div>#}
+{#	                </li>#}
+{#	                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(../static/images/pic_160.jpg)">#}
+{#	                  <div class="weui-uploader__file-content">50%</div>#}
+{#	                </li>#}
+{#	              </ul>#}
+	              <div class="">
+{#	                <input id="uploaderInput" class="weui-uploader__input" type="file"  accept=".xls,.doc,.txt,.pdf" multiple="">#}
+                    <input name="uploadfile" class="" type="file" required="required" accept="application/msword,application/vnd.ms-excel,application/pdf,image/jpeg,application/vnd.ms-powerpoint">
+	              </div>
+	            </div>
+	          </div>
 	        </div>
 	      </div>
-	    </div>
-      <!--排版方向选择-->
-      <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-          <label for="" class="weui-label">排版方向</label>
-        </div>
-        <div class="weui-cell__bd">
-          <select class="weui-select" name="select2">
-            <option value="1">竖版</option>
-            <option value="2">横版</option>
-          </select>
-        </div>
-      </div>
-      <!--色彩选择-->
-      <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-          <label for="" class="weui-label">色彩选择</label>
-        </div>
-        <div class="weui-cell__bd">
-          <select class="weui-select" name="select2">
-            <option value="1">黑白</option>
-            <option value="2">彩色</option>
-          </select>
-        </div>
-      </div>
-      <!--纸张大小选择-->
-      <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-          <label for="" class="weui-label">纸张大小</label>
-        </div>
-        <div class="weui-cell__bd">
-          <select class="weui-select" name="select2">
-            <option value="1">&nbsp;A4</option>
-            <option value="2">&nbsp;A3</option>
-          </select>
-        </div>
-      </div>
-      <!--排版方向选择-->
-      <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-          <label for="" class="weui-label">打印方式</label>
-        </div>
-        <div class="weui-cell__bd">
-          <select class="weui-select" name="select2">
-            <option value="1">单面</option>
-            <option value="2">双面</option>
-          </select>
-        </div>
-      </div>
-      <!--费用预算-->
-	    <div class="weui-cell">
-	      <div class="weui-cell__bd">
-	        <p>打印总价</p>
+				<!--打印点选择-->
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd"><label for="name" class="weui-label">打印点</label></div>
+	        <div class="weui-cell__bd">
+	          <input class="weui-input" name="place" id="place" type="text" value="西安理工大学教六2楼西" required="required">
+	        </div>
 	      </div>
-	      <span class="price" id="fee">￥0.00</span>
-	    </div>
-	     <!--结束时间-->
-	    <div class="weui-cell">
-	      <div class="weui-cell__bd">
-	        <p>结束时间</p>
+	      <!--打印时间选择-->
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd"><label for="time" class="weui-label">预约时间</label></div>
+	        <div class="weui-cell__bd">
+	          <input class="weui-input" id="time" type="text" value="">
+	        </div>
 	      </div>
-	      <span class="datetime-picker">开发中</span>
+	      <div class="weui-cell weui-cell_switch">
+	        <div class="weui-cell__bd">自动排队</div>
+	        <div class="weui-cells__tips">打开将忽视预约时间</div>
+	        <div class="weui-cell__ft">
+	          <input class="weui-switch" type="checkbox" checked="checked" name="time_way" value="1">
+	        </div>
+	      </div>
+	      <!--打印页数选择-->
+{#	      <div class="weui-cell">#}
+{#	        <div class="weui-cell__hd"><label class="weui-label">起始页设置</label></div>#}
+{#	        <div class="weui-cell__bd">#}
+{#	          <input class="weui-input" type="number" id="page1" oninput="value.replace(/[^\d]/g,'')" placeholder="请输入数字">#}
+{#	        </div>#}
+{#	      </div>#}
+{#	      <div class="weui-cell">#}
+{#	        <div class="weui-cell__hd"><label class="weui-label">结束页设置</label></div>#}
+{#	        <div class="weui-cell__bd">#}
+{#	          <input class="weui-input" type="number" id="page2" oninput="value.replace(/[^\d]/g,'')" placeholder="请输入数字">#}
+{#	        </div>#}
+{#	      </div>#}
+	      <!--打印份数选择-->
+		    <div class="weui-cell">
+		      <div class="weui-cell__bd">
+		        <p>打印份数</p>
+		      </div>
+		      <div class="weui-cell__ft">
+		        <div class="weui-count">
+		          <a class="weui-count__btn weui-count__decrease"></a>
+		          <input class="weui-count__number" type="text" name="copies" id="copies" value="1" />
+		          <a class="weui-count__btn weui-count__increase"></a>
+		        </div>
+		      </div>
+		    </div>
+	      <!--排版方向选择-->
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">排版方向</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select class="weui-select" name="direction">
+	            <option value="1">竖版</option>
+	            <option value="2" disabled>横版-暂不支持</option>
+	          </select>
+	        </div>
+	      </div>
+	      <!--色彩选择-->
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">色彩选择</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select class="weui-select" name="colour">
+	            <option value="1">黑白</option>
+	            <option value="2" disabled>彩色-暂不支持</option>
+	          </select>
+	        </div>
+	      </div>
+	      <!--纸张大小选择-->
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">纸张大小</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select class="weui-select" name="paper_size">
+	            <option value="1">&nbsp;A4</option>
+{#	            <option value="2">&nbsp;A3</option>#}
+	          </select>
+	        </div>
+	      </div>
+	      <!--排版方向选择-->
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">打印方式</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select class="weui-select" name="print_way">
+	            <option value="1">单面</option>
+{#	            <option value="2">双面</option>#}
+	          </select>
+	        </div>
+	      </div>
+{#	      <!--费用预算-->#}
+{#		    <div class="weui-cell">#}
+{#		      <div class="weui-cell__bd">#}
+{#		        <p>打印总价</p>#}
+{#		      </div>#}
+{#		      <span class="price" id="fee">￥0.00</span>#}
+{#		    </div>#}
+{#		    <!--结束时间-->#}
+{#		    <div class="weui-cell">#}
+{#		      <div class="weui-cell__bd">#}
+{#		        <p>结束时间</p>#}
+{#		      </div>#}
+{#		      <span class="datetime-picker">开发中</span>#}
+{#		    </div>#}
 	    </div>
-    </div>
-    <div class="weui-btn-area">
-      <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
-    </div>
+	    
+	    <div class="weui-btn-area">
+{#	      <a class="weui-btn weui-btn_primary" href="/checkorder">确定</a>#}
+            <input class="weui-btn weui-btn_primary" type="submit" value="确定">
+	    </div>
+    </form>
     
-    <script src="../static/lib/jquery-2.1.4.js""></script>
+    <script src="../static/lib/jquery-2.1.4.js"></script>
 		<script src="../static/lib/fastclick.js"></script>
 		<script>
 		  $(function() {
@@ -171,148 +194,7 @@
 		  });
 		</script>
 		<script src="../static/js/jquery-weui.js"></script>
+    <script src="../static/js/select.js"></script>
 
-
-    <script>
-    	$(function() {	
-      	$.login({
-          title: '登录',
-          text: '请输入用户名和密码',
-          onOK: function (username, password) {
-            console.log(username, password);
-            $.toast('登录成功!');
-          },
-          onCancel: function () {
-		        $.confirm("手机一键注册", "没有账号?", function() {
-	        	  function skip(){
-	            	window.location.href='/login';
-	            }
-	            setInterval(skip,50);
-		        }, function() {
-		          //取消操作
-		          function skip(){
-	            	window.location.href='/';
-	            }
-	            setInterval(skip,50);
-		        });
-          }
-        });
-     });
-    
-      $("#page1").change(function(){
-    		var page1 = $('#page1').val();
-    		var page2 = $('#page2').val();
-    		var copies = $('#copies').val();
-    		$("#fee").text("￥");
-    		var cost=(page2-page1+1)*copies*0.15;
-    		var textNode = document.createTextNode(cost.toFixed(2));
-				$(fee).append(textNode);
-    	});
-    	$("#page2").change(function(){
-    		var page1 = $('#page1').val();
-    		var page2 = $('#page2').val();
-    		var copies = $('#copies').val();
-    		$("#fee").text("￥");
-    		var cost=(page2-page1+1)*copies*0.15;
-    		var textNode = document.createTextNode(cost.toFixed(2));
-				$(fee).append(textNode);
-    	});
-    	$("#copies").change(function(){
-    		var page1 = $('#page1').val();
-    		var page2 = $('#page2').val();
-    		var copies = $('#copies').val();
-    		$("#fee").text("￥");
-    		var cost=(page2-page1+1)*copies*0.15;
-    		var textNode = document.createTextNode(cost.toFixed(2));
-				$(fee).append(textNode);
-    	});
-    	
-      $("#place").select({
-        title: "打印点",
-        items: ["西安理工大学教五111", "西安理工大学教六222", "西安理工大学教一333", "西安理工大学教十444", "西安理工大学教八555", "西安理工大学教九666"],
-        onChange: function(d) {
-          console.log(this, d);
-        },
-        onClose: function() {
-          console.log("close");
-        },
-        onOpen: function() {
-          console.log("open");
-        },
-      });
-      
-      $("#time").datetimePicker({
-        title: '预约时间',
-        min: "1990-12-12",
-        max: "2022-12-12 12:12",
-        onChange: function (picker, values, displayValues) {
-          console.log(values);
-        }
-      });
-      
-      var MAX = 99, MIN = 1;
-      $('.weui-count__decrease').click(function (e) {
-        var $input = $(e.currentTarget).parent().find('.weui-count__number');
-        var number = parseInt($input.val() || "0") - 1
-        if (number < MIN) number = MIN;
-        $input.val(number)
-        var page1 = $('#page1').val();
-    		var page2 = $('#page2').val();
-    		var copies = $('#copies').val();
-    		$("#fee").text("￥");
-    		var cost=(page2-page1+1)*copies*0.15;
-    		var textNode = document.createTextNode(cost.toFixed(2));
-				$(fee).append(textNode);
-      })
-      $('.weui-count__increase').click(function (e) {
-        var $input = $(e.currentTarget).parent().find('.weui-count__number');
-        var number = parseInt($input.val() || "0") + 1
-        if (number > MAX) number = MAX;
-        $input.val(number)
-				var page1 = $('#page1').val();
-    		var page2 = $('#page2').val();
-    		var copies = $('#copies').val();
-    		$("#fee").text("￥");
-    		var cost=(page2-page1+1)*copies*0.15;
-    		var textNode = document.createTextNode(cost.toFixed(2));
-				$(fee).append(textNode);
-      })
-      
-      $("#showTooltips").click(function() {
-      	var uploaderInput = $('#uploaderInput').val();
-        if(uploaderInput==""){
-					$.toptip('未上传文件');
-					return false;
-				}
-      	var place = $("#place").val();
-				if(place==""){
-					$.toptip('请选择打印点');
-					return false;
-				}
-				var page1 = $('#page1').val();
-        if(page1==""){
-					$.toptip('未正确设置起始页');
-					return false;
-				}
-        var page2 = $('#page2').val();
-        if(page2==""){
-					$.toptip('未正确设置结束页');
-					return false;
-				}
-        if(page1>page2){
-					$.toptip('未正确设置打印页数');
-					return false;
-				}
-        else $.modal({
-          title: "Success",
-          text: "请选择支付方式",
-          buttons: [
-            { text: "支付宝", onClick: function(){ $.alert("你选择了支付宝"); } },
-            { text: "微信支付", onClick: function(){ $.alert("你选择了微信支付"); } },
-            { text: "取消", className: "default"},
-          ]
-        });
-      });
-    </script>
   </body>
 </html>

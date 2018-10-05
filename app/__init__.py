@@ -3,15 +3,16 @@
 from datetime import datetime, timedelta
 from flask import Flask, redirect, url_for, render_template, session, g, jsonify, request
 from config import DevConfig
-# # from models import db
+from models import db, User
 from controllers.printer import printer
 from controllers.login import login
-import datetime
+import datetime, json
 
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 
-app.permanent_session_lifetime = datetime.timedelta(seconds=5*60)          #设置sission过期时间为5min
+db.init_app(app)
+# app.permanent_session_lifetime = datetime.timedelta(seconds=10*60)          #设置sission过期时间为10min
 
 # 自定义jinja过滤器
 def time_format(l):
@@ -25,11 +26,15 @@ def index():
 
 @app.before_request
 def check_user():
-    if 'user_id' in session:
-        g.current_user = User.query.filter_by(Id=session['user_id']).one()
+    if 'user_phone' in session:
+        g.current_userphone = session['user_phone']
+        user = User.query.filter(User.Tel_Number == g.current_userphone).first()
+        g.current_user = user
 
     else:
+        g.current_userphone = json.dumps(None)
         g.current_user = None
+
 
 
 

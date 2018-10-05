@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>jQuery WeUI</title>
+    <title>注册</title>
     <meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -11,10 +11,21 @@
 		<link rel="stylesheet" href="../static/lib/weui.min.css">
 		<link rel="stylesheet" href="../static/css/jquery-weui.css">
 		<link rel="stylesheet" href="../static/mycss/demos.css">
+        <link rel="stylesheet" href="../static/css/light7.css">
   </head>
 
   <body ontouchstart>
-    <header class='demos-header'>
+  <!--导航栏-->
+      <header class="bar bar-nav">
+          <a class="button button-link button-nav pull-left back" href="/select">
+              <span class="icon icon-left"></span>
+              Back
+          </a>
+          <h1 class="title"></h1>
+      </header>
+
+
+  <header class='demos-header'>
       <h1 class="demos-title">注册</h1>
     </header>
 
@@ -44,25 +55,46 @@
                     <img class="weui-vcode-img" src="">
                 </div>
             </div>
+
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd"><label class="weui-label">&nbsp;&nbsp;密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" name="password" id="password" placeholder="密码（ 6位以上）">
+                </div>
+                <div class="weui-cell__ft">
+                    <img class="weui-vcode-img" src="">
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" name="confirm" id="confirm" placeholder="再次输入密码">
+                </div>
+                <div class="weui-cell__ft">
+                    <img class="weui-vcode-img" src="">
+                </div>
+            </div>
+
+
         </div>
 
         <div class="weui-cells__tips">
-            <!--<label for="weuiAgree" class="weui-agree">-->
-              <!--<input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">-->
-              <!--<span class="weui-agree__text">-->
-                    <!--阅读并同意<a href="javascript:void(0);">《相关条款》</a>-->
-              <!--</span>-->
-            <!--</label>-->
-
-            <!--<div class="weui-btn-area">-->
-              <!--<a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips"><button type="submit" id="submit" class="weui-btn weui-btn_primary">确认</button></a>-->
-            <!--</div>-->
-            <!--<button class="weui-btn weui-btn_primary" type="button" id="submit" onclick="check_data()">确认</button>-->
-            <input class="weui-btn weui-btn_primary" type="button" name="save" value="确认" id="save" onclick="check_data()" />
-
-
+{#            <label for="weuiAgree" class="weui-agree">#}
+{#                <input id="weuiAgree" type="checkbox" id="agree" class="weui-agree__checkbox">#}
+{#                <span class="weui-agree__text">#}
+{#	        	阅读并同意<a href="javascript:void(0);">《相关条款》</a>#}
+{#                    阅读并同意<a href="/clause">《相关条款》</a>#}
+{#	            </span>#}
+{#            </label>#}
+            <input id="weuiAgree" type="checkbox" id="agree" class="weui-agree__checkbox">
+            <span class="weui-agree__text">
+	        	阅读并同意<a href="/clause" id="clause">《相关条款》</a>
+	      </span>
         </div>
-
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="button" name="save" value="确认" id="save" onclick="check_data()" />
+        </div>
     </form>
     {% if error_msg %}
     <p style="color:red" class="warning" >{{ error_msg }}</p>
@@ -95,10 +127,16 @@
         function check_data() {
             var tel = $('#phone').val();
             var code = $('#code').val();
+            var password = $('#password').val();
+            var confirm = $('#confirm').val();
 
             if(!tel || !/^1[3|4|5|7|8]\d{9}$/.test(tel)) $.toptip('请输入手机号');
             else if(!code || !/^\d{6}$/.test(code)) $.toptip('请输入六位手机验证码');
             else if(backcode){$.toptip(backcode);}
+            else if(!password || !/^[a-zA-Z\d_]{6,12}$/.test(password)) $.toptip('请正确设置密码');
+            else if(confirm!=password) {$.toptip('密码不一致');}
+            else if($("input[type='checkbox']").is(':checked')==false){
+                $.toptip('请阅读相关条款');}
             else {
                 document.getElementById('my-form').submit();
             }
@@ -175,7 +213,7 @@
         {
             var xmlhttp = new XMLHttpRequest();
 
-            xmlhttp.open("GET", "login?mobile_phone_number=" + phone_number, true);
+            xmlhttp.open("GET", "register?mobile_phone_number=" + phone_number, true);
             xmlhttp.send();
 
 
