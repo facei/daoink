@@ -51,11 +51,8 @@ def register():
 def clause():
     return render_template('clause.html')
 
-@login.route("/login/", methods=['POST'])
+@login.route("/login/", methods=['POST', 'GET'])
 def do_login():
-    global flag
-    session['user_loged'] = 0
-    flag = 0
     if request.method == 'POST':
         tel = request.form.get('tel')
         password = request.form.get('password')
@@ -65,12 +62,13 @@ def do_login():
             # session['user_loged'] = 1
             g.current_userphone = session['user_phone']
             g.current_user = user
-            flag = 1
             print "Log in OK"
-            return render_template('select.html', flag=flag)
+            flag = 1
+            return redirect('/select?flag=2')
         else:
             print "Log in Failed"
-            return render_template('index.html')
+            flag = 2
+            return redirect('/select?flag=2')
 
 
 @login.route("/logout", methods=['GET'])

@@ -38,10 +38,17 @@ def select():
         data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
                 "print_way": print_way, "time_way": time_way, "cost": cost}
 
+
         return render_template('confirm.html', data=data)
-
-
-    return render_template('select.html', now=now)
+    flag = request.args.get('flag')
+    print flag
+    if flag == '2':
+        return render_template('select.html', now=now, flag=flag)
+    elif flag == '1':
+        return render_template('select.html', now=now, flag=flag)
+    else:
+        print "mad"
+        return render_template('select.html', now=now)
 
 
 @printer.route('/confirm', methods=['GET', 'POST'])
@@ -77,3 +84,7 @@ def confirm():
         return render_template("result.html", result=result)
     else:
         return render_template("result.html", result=result)
+
+@printer.route('/result', methods=['GET', 'POST'])
+def result():
+    return 'ok'
