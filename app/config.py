@@ -6,4 +6,4 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:Redhat@120.79.139.82:3306/rooprint"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:YOURPASSWORD@120.79.139.82:3306/rooprint"
