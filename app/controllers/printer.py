@@ -40,15 +40,8 @@ def select():
 
 
         return render_template('confirm.html', data=data)
-    flag = request.args.get('flag')
-    print flag
-    if flag == '2':
-        return render_template('select.html', now=now, flag=flag)
-    elif flag == '1':
-        return render_template('select.html', now=now, flag=flag)
-    else:
-        print "mad"
-        return render_template('select.html', now=now)
+
+    return render_template('select.html', now=now)
 
 
 @printer.route('/confirm', methods=['GET', 'POST'])
