@@ -12,34 +12,65 @@
     <link rel="stylesheet" href="../static/css/jquery-weui.css">
     <link rel="stylesheet" href="../static/mycss/demos.css">
     <link rel="stylesheet" href="../static/css/light7.css">
+    <script src="https://payonline.xin/static/security/security.js"></script>
+    <script src="https://payonline.xin/static/class/class.js"></script>
 </head>
 <body>
     <header class='demos-header'>
         <h1 class="demos-title">确认订单</h1>
     </header>
-    <div >
-        <form method="post" action="/confirm">
-            <label>订单信息：</label>
-            <h4>文件名:{{ data["printfile"].filename }}</h4>
-            <h4>打印点:{{ data["place"] }}</h4>
-            <h4>打印份数:{{ data["copies"] }}</h4>
-            <h4>预约方式:{{ data["time_way"] }}</h4>
-            <hr>
-            <h4>总价:{{ data["cost"] }}</h4>
 
-            <input type="hidden" name="filename" value="{{ data["new_filename"] }}">
-            <input type="hidden" name="place" value="{{ data["place"] }}">
-            <input type="hidden" name="copies" value="{{ data["copies"] }}">
-            <input type="hidden" name="direction" value="{{ data["direction"] }}">
-            <input type="hidden" name="colour" value="{{ data["colour"] }}">
-            <input type="hidden" name="paper_size" value="{{ data["paper_size"] }}">
-            <input type="hidden" name="print_way" value="{{ data["print_way"] }}">
-            <input type="hidden" name="time_way" value="{{ data["time_way"] }}">
-            <input type="hidden" name="cost" value="{{ data["cost"] }}">
-            <div>
-                <input type="submit", value="确认从账户余额支付">
+{#    <div >#}
+{#        <form method="post" action="/confirm">#}
+{#            <input type="hidden" name="filename" value="{{ data["new_filename"] }}">#}
+{#            <input type="hidden" name="place" value="{{ data["place"] }}">#}
+{#            <input type="hidden" name="copies" value="{{ data["copies"] }}">#}
+{#            <input type="hidden" name="direction" value="{{ data["direction"] }}">#}
+{#            <input type="hidden" name="colour" value="{{ data["colour"] }}">#}
+{#            <input type="hidden" name="paper_size" value="{{ data["paper_size"] }}">#}
+{#            <input type="hidden" name="print_way" value="{{ data["print_way"] }}">#}
+{#            <input type="hidden" name="time_way" value="{{ data["time_way"] }}">#}
+{#            <input type="hidden" name="cost" value="{{ data["cost"] }}">#}
+{#            <div>#}
+{#                <input type="submit", value="确认从账户余额支付">#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+    <div class="weui-form-preview">
+        <div class="weui-form-preview__hd">
+            <label class="weui-form-preview__label">付款金额</label>
+            <em class="weui-form-preview__value">¥{{ data["cost"] }}元</em>
+        </div>
+        <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">文件</label>
+                <span class="weui-form-preview__value">{{ data["printfile"].filename }}</span>
             </div>
-        </form>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">打印点</label>
+                <span class="weui-form-preview__value">{{ data["place"] }}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">打印份数</label>
+                <span class="weui-form-preview__value">{{ data["copies"] }}份</span>
+            </div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                <a data-href="https://www.payonline.xin/buy.html?a=NTI2&n=袋鼠打印&p={{ data["cost"] }}&i="   class="EPAY-ITME"    target="_blank"><button class="weui-btn weui-btn_primary">确认</button></a>
+            </div>
+
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>

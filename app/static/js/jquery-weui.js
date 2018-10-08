@@ -3422,7 +3422,7 @@ if (typeof define === 'function' && define.amd) {
 
     var modal = $.modal({
       text: '<p class="weui-prompt-text">'+(config.text || '')+'</p>' +
-            '<input type="text" class="weui-input weui-prompt-input" id="weui-prompt-username" value="' + (config.username || '') + '" placeholder="输入用户名" />' +
+            '<input type="text" class="weui-input weui-prompt-input" id="weui-prompt-username" value="' + (config.username || '') + '" placeholder="输入手机号" />' +
             '<input type="password" class="weui-input weui-prompt-input" id="weui-prompt-password" value="' + (config.password || '') + '" placeholder="输入密码" />',
       title: config.title,
       autoClose: false,

@@ -114,7 +114,7 @@
 			        <div class="weui-cell__bd">
                         <div>
                           <p>{{ g.current_userphone }}</p>
-                          <p style="font-size: 13px;color: #888888;">余额：{{ g.current_user.Money }}元</p>
+{#                          <p style="font-size: 13px;color: #888888;">余额：{{ g.current_user.Money }}元</p>#}
                         </div>
 			        </div>
                       {% if g.current_userphone != 'null' %}
@@ -214,7 +214,7 @@
 		    FastClick.attach(document.body);
 		  });
 		  $("#login").click(function(){
-				window.location.href='/form';
+				window.location.href='/register';
     	});
 		</script>
 		<script src="../static/js/jquery-weui.js"></script>
