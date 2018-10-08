@@ -25,12 +25,14 @@
       </header>
 
 
-  <header class='demos-header'>
-      <h1 class="demos-title">注册</h1>
-    </header>
+
 
     <form method="post" id="my-form" name="my-form">
         <div class="weui-cells weui-cells_form">
+            <header class='demos-header'>
+                <h1 class="demos-title">注册</h1>
+            </header>
+
             <div class="weui-cell weui-cell_vcode">
                 <div class="weui-cell__hd">
                   <label class="weui-label">手机号</label>
@@ -96,19 +98,22 @@
             <input class="weui-btn weui-btn_primary" type="button" name="save" value="确认" id="save" onclick="check_data()" />
         </div>
     </form>
-    {% if error_msg %}
-    <p style="color:red" class="warning" >{{ error_msg }}</p>
-    <script>
-        var backcode = {{ error_msg|tojson }};
-        $.toptip(backcode);
-    </script>
-    {% else %}
-    <p class="warning"></p>
-    {% endif %}
+
 
     <script src="../static/lib/jquery-2.1.4.js"></script>
     <script src="../static/lib/fastclick.js"></script>
     <script src="../static/js/jquery-weui.js"></script>
+
+
+  {% if error_msg %}
+      <script>
+          $(function() {
+              $.alert("{{ error_msg }}", "警告")
+          });
+      </script>
+
+  {% endif %}
+
 
     <script>
       $(function() {
@@ -141,10 +146,12 @@
                 document.getElementById('my-form').submit();
             }
             var backcode = {{ error_msg|tojson }};
-            if(backcode){
-                $.toptip(backcode);
-
-            }
+{#            if(backcode){#}
+{#                $.toptip(backcode);#}
+{#                $(function() {#}
+{#                    $.alert("{{ backcode }}", "警告")#}
+{#                });#}
+{#            }#}
 
         }
     </script>

@@ -1,10 +1,8 @@
 if(UserName === 'null'){
     $(function() {
-        // username = g.current_username
-        // flags = {{ flag }}
         $.login({
             title: '登陆',
-            text: '请输入用户名和密码',
+            text: '请输入手机号和密码',
             onOK: function (username, password) {
                 console.log(username, password);
                 var data = {};
@@ -16,10 +14,10 @@ if(UserName === 'null'){
                     data: data,
                     dataType: 'json',
                     success: function() {
-                        window.location.href='/';
+                        window.location.href='/select';
                     },
                     error: function() {
-                        window.location.href='/';
+                        window.location.href='/select';
                     }
                 });
 

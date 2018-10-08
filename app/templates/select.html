@@ -17,10 +17,12 @@
 
   <body ontouchstart>
   <script>
-{#      alert({{ g.current_userphone }})#}
-      var UserName = '{{ g.current_userphone }}'
+      var UserName = '{{ g.current_userphone }}'            // 后端数据
       var time_now = '{{ now }}'
+      var flag = '{{ flag }}'
   </script>
+
+
 
     {#    <div id="dataid" d="{{ g.current_username }}" style="display:none"></div>   {# 后端数据#}
 
@@ -182,10 +184,11 @@
 	    
 	    <div class="weui-btn-area">
 {#	      <a class="weui-btn weui-btn_primary" href="/checkorder">确定</a>#}
-            <input class="weui-btn weui-btn_primary" type="submit" value="确定">
+
+            <a data-href="https://www.payonline.xin/buy.html?a=NTI2&n=袋鼠打印&p=0.2&i="   class="EPAY-ITME"    target="_blank"><input class="weui-btn weui-btn_primary" type="submit" value="确定">  </a>
 	    </div>
     </form>
-    
+
     <script src="../static/lib/jquery-2.1.4.js"></script>
 		<script src="../static/lib/fastclick.js"></script>
 		<script>
@@ -195,6 +198,5 @@
 		</script>
 		<script src="../static/js/jquery-weui.js"></script>
     <script src="../static/js/select.js"></script>
-
   </body>
 </html>
