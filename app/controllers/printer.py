@@ -38,6 +38,25 @@ def select():
         data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
                 "print_way": print_way, "time_way": time_way, "cost": cost}
 
+        # 写入数据库
+        user = User.query.filter(User.Tel_Number == g.current_userphone).first()
+        order_forsql = Order()
+        order_forsql.User_Id = user.Id
+        order_forsql.File_Dir = new_filename
+        order_forsql.Time_Way = time_way
+        order_forsql.Print_Place = place
+        order_forsql.Print_Copies = copies
+        order_forsql.Print_Direction = direction
+        order_forsql.Print_Colour = colour
+        order_forsql.Print_size = paper_size
+        order_forsql.Print_way = print_way
+        order_forsql.Print_Money = cost
+        order_forsql.Print_Status = 0
+
+        db.session.add(order_forsql)
+        db.session.commit()
+
+
 
         return render_template('confirm.html', data=data)
 
@@ -80,6 +99,17 @@ def confirm():
 
 @printer.route('/result', methods=['GET', 'POST'])
 def result():
-    order_number = request.args.get('out_trade_no')
+    global result
+    result = 0
+    user = User.query.filter(User.Tel_Number == g.current_userphone).first()
+    user_id = user.Id
+    trade_number = request.args.get('out_trade_no')
     new_file_name = request.args.get('param')
-    return 'ok'+":"+order_number+":"+new_file_name
+    result_order = Order.query.filter(Order.File_Dir == new_file_name, Order.Id == user_id).first()
+    result_order.Print_Status = 1
+    result_order.Trade_Number = trade_number
+    db.session.add(result_order)
+    db.session.commit()
+    result = 1
+
+    return render_template('result.html', result=result)
