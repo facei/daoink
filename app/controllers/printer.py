@@ -24,7 +24,7 @@ def select():
         paper_size = request.form.get("paper_size")     # 纸张大小
         print_way = request.form.get("print_way")       # 单双面
         time_way = request.form.get("time_way")         # 预约或自动排队
-        cost = 0.2
+        cost = 0.01
 
         filename = printfile.filename
         index_point = filename.index(".")
@@ -80,4 +80,6 @@ def confirm():
 
 @printer.route('/result', methods=['GET', 'POST'])
 def result():
-    return 'ok'
+    order_number = request.args.get('out_trade_no')
+    new_file_name = request.args.get('param')
+    return 'ok'+":"+order_number+":"+new_file_name
