@@ -11,7 +11,6 @@ class User(db.Model):
     Id = db.Column(db.Integer(), primary_key=True)
     Tel_Number = db.Column(db.String(255), nullable=False)
     Password = db.Column(db.String(255), nullable=False)
-    Money = db.Column(db.Float(), default=0.5)
     Register_Date = db.Column(db.DateTime, default=datetime.datetime.now)
 
 
@@ -33,7 +32,8 @@ class Order(db.Model):
     Print_size = db.Column(db.String(255), nullable=False)
     Print_way = db.Column(db.String(255), nullable=False)           # 打印的方式，单面或双面
     Print_Money = db.Column(db.Float())                             # 订单价格
-    Print_Status = db.Column(db.Integer(), default=0)               # 订单状态，0:未支付, 1:已经支付但未打印, 2:已经打印
+    Print_Status = db.Column(db.Integer(), default=0)               # 订单状态，0:已提交文件但未支付, 1:已经支付但未打印, 2:已经打印
+    Trade_Number = db.Column(db.String(255))                        # 支付订单号
 
 
     User_Id = db.Column(db.Integer(), db.ForeignKey('User.Id'), nullable=False)
