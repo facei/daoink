@@ -75,6 +75,7 @@ def do_login():
 def logout():
     session.pop('user_phone', None)
     g.current_userphone = json.dumps(None)
+    g.current_user = None
     return render_template('index.html')
 
 

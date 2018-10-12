@@ -43,6 +43,7 @@ def select():
         order_forsql = Order()
         order_forsql.User_Id = user.Id
         order_forsql.File_Dir = new_filename
+        order_forsql.File_Name = filename
         order_forsql.Time_Way = time_way
         order_forsql.Print_Place = place
         order_forsql.Print_Copies = copies
