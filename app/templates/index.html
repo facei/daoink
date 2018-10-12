@@ -25,7 +25,7 @@
       	<!--页面一-->
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
           <header class='demos-header'>
-			      <h1 class="demos-title">袋鼠邻居</h1>
+			      <h1 class="demos-title">袋鼠打印</h1>
 			      <p class='demos-sub-title'>免排队，可预约的共享打印</p>
 			    </header>
 			    <table bordercolor="1px" cellspacing="40px" cellpadding="0px"  style="border-color: #E9E9E9;margin: auto;">
@@ -35,7 +35,7 @@
 				          <img src="../static/images/print.png" alt="">
 				        </div>
 				        <p class="weui-grid__label">
-				          	<font size="5" face="arial rounded mt bold">打印入口</font>
+				          	<font size="3" face="arial rounded mt bold" style="color: #0894ec ">打印入口 点击进入</font>
 				        </p>
 			      	</a>
 			    	</td></tr>
@@ -44,8 +44,10 @@
 			      <p class="weui-footer__links">
 			        <a href=" " class="weui-footer__link">Roo-Ins首页</a>
 			      </p>
-			      <p class="weui-footer__text">Copyright © 2018 rooins.com</p>
+			      <p class="weui-footer__text">Copyright © 2018 rooins.careyou.xin</p>
     			</div>
+                <br>
+                <br>
         </div>
         
         <!--页面二-->
@@ -69,37 +71,76 @@
         
         <!--页面三-->
         <div id="tab3" class="weui-tab__bd-item">
-          <header class='demos-header'>
+            <header class='demos-header'>
 			      <h1 class="demos-title">历史订单</h1>
-			    </header>
-			    <div class="weui-form-preview">
-			      <div class="weui-form-preview__hd">
-			        <label class="weui-form-preview__label">付款金额</label>
-			        <em class="weui-form-preview__value">¥66.60</em>
-			      </div>
-			      <div class="weui-form-preview__bd">
-			        <div class="weui-form-preview__item">
-			          <label class="weui-form-preview__label">标题</label>
-			          <span class="weui-form-preview__value">考研啦考研啦考研啦</span>
-			        </div>
-			          <div class="weui-form-preview__item">
-			          <label class="weui-form-preview__label">资料费</label>
-			          <span class="weui-form-preview__value">0元</span>
-			        </div>
-			        <div class="weui-form-preview__item">
-			          <label class="weui-form-preview__label">打印单价</label>
-			          <span class="weui-form-preview__value">0.1元</span>
-			        </div>
-			        <div class="weui-form-preview__item">
-			          <label class="weui-form-preview__label">打印页数</label>
-			          <span class="weui-form-preview__value">666页</span>
-			        </div>
-			      </div>
-			      <div class="weui-form-preview__ft">
-			        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">状态</a>
-			        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</button>
-			      </div>
-			    </div>
+            </header>
+            {% if g.current_user == None %}
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <i class="weui-icon-info weui-icon_msg" style="margin-left: 37%"></i>
+                    </div>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <label style="margin-left: 28%">您还没有登陆！</label>
+                    </div>
+                </div>
+            {% else %}
+                {% if lenth != 0 %}
+                    {% for i in range(lenth) %}
+                        <div class="weui-form-preview">
+                            <div class="weui-form-preview__hd">
+                                <label class="weui-form-preview__label">付款金额</label>
+                                <em class="weui-form-preview__value">¥{{ user_order[i].Print_Money }}</em>
+                            </div>
+                            <div class="weui-form-preview__bd">
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">文件</label>
+                                    <span class="weui-form-preview__value">{{ user_order[i].File_name }}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">下单时间</label>
+                                    <span class="weui-form-preview__value">{{ user_order[i].Born_Date }}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">打印点</label>
+                                    <span class="weui-form-preview__value">{{ user_order[i].Print_Place }}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">订单状态</label>
+                                    {% if user_order[i].Print_Status == 0 %}
+                                        <span class="weui-form-preview__value">待支付</span>
+                                    {% elif user_order[i].Print_Status == 1 %}
+                                        <span class="weui-form-preview__value">已支付，待打印</span>
+                                    {% elif user_order[i].Print_Status == 2 %}
+                                        <span class="weui-form-preview__value">已打印</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="weui-form-preview__ft">
+                                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">辅助操作</a>
+                                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</button>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                    {% endfor %}
+                {% else %}
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                            <i class="weui-icon-info weui-icon_msg" style="margin-left: 37%"></i>
+                        </div>
+                    </div>
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                            <label style="margin-left: 28%">您还没有创建过订单！</label>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endif %}
+
         </div>
         
         <!--页面四-->
