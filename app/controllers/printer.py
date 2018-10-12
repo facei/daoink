@@ -56,46 +56,19 @@ def select():
         db.session.add(order_forsql)
         db.session.commit()
 
+        param_order = Order.query.filter(Order.File_Dir == new_filename, Order.User_Id == user.Id).first()
+        param = param_order.Id
+
+        param = (float(param) + 111)*73*1.3
 
 
-        return render_template('confirm.html', data=data)
+
+        return render_template('confirm.html', data=data, param=param)
 
     return render_template('select.html', now=now)
 
 
-# @printer.route('/confirm', methods=['GET', 'POST'])
-# def confirm():
-#     global result
-#     result = 0
-#     cost = request.form.get("cost")
-#     user = User.query.filter(User.Tel_Number == g.current_userphone).first()
-#     cost = float(cost)
-#     if cost <= user.Money:
-#
-#         order_forsql = Order()
-#         order_forsql.User_Id = user.Id
-#         order_forsql.File_Dir = request.form.get("filename")
-#         order_forsql.Time_Way = request.form.get("time_way")
-#         order_forsql.Print_Place = request.form.get("place")
-#         order_forsql.Print_Copies = request.form.get("copies")
-#         order_forsql.Print_Direction = request.form.get("direction")
-#         order_forsql.Print_Colour = request.form.get("colour")
-#         order_forsql.Print_size = request.form.get("paper_size")
-#         order_forsql.Print_way = request.form.get("print_way")
-#         order_forsql.Print_Money = request.form.get("cost")
-#         order_forsql.Print_Status = 1
-#
-#         db.session.add(order_forsql)
-#         db.session.commit()
-#
-#         user.Money = round(user.Money - float(request.form.get("cost")), 1)
-#         db.session.add(user)
-#         db.session.commit()
-#
-#         result = 1
-#         return render_template("result.html", result=result)
-#     else:
-#         return render_template("result.html", result=result)
+
 
 @printer.route('/result', methods=['GET', 'POST'])
 def result():
@@ -104,12 +77,18 @@ def result():
     # user = User.query.filter(User.Tel_Number == g.current_userphone).first()
     # user_id = user.Id
     trade_number = request.args.get('out_trade_no')
-    new_file_name = request.args.get('param')
-    result_order = Order.query.filter(Order.File_Dir == new_file_name).first()
-    result_order.Print_Status = 1
-    result_order.Trade_Number = trade_number
-    db.session.add(result_order)
-    db.session.commit()
-    result = 1
+    param = request.args.get('param')
+    param = float(param)/1.3/73-111
+    result_order = Order.query.filter(Order.Id == param).first()
+    if result_order:
+        result_order.Print_Status = 1
+        result_order.Trade_Number = trade_number
+        db.session.add(result_order)
+        db.session.commit()
+        result = 1
 
     return render_template('result.html', result=result)
+
+@printer.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('test.html')
