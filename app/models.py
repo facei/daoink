@@ -21,6 +21,7 @@ class Order(db.Model):
 
     Id = db.Column(db.Integer(), primary_key=True)
     File_Dir = db.Column(db.String(255), nullable=False)
+    File_Name = db.Column(db.String(255))                           # 文件原始名字
     Born_Date = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
     Time_Way = db.Column(db.Integer())                              # 打印时间规划方式，自由排队
     Print_Date = db.Column(db.DateTime)                             # 打印时间点 *
