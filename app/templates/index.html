@@ -96,7 +96,7 @@
                             <div class="weui-form-preview__bd">
                                 <div class="weui-form-preview__item">
                                     <label class="weui-form-preview__label">文件</label>
-                                    <span class="weui-form-preview__value">{{ user_order[i].File_name }}</span>
+                                    <span class="weui-form-preview__value">{{ user_order[i].File_Name }}</span>
                                 </div>
                                 <div class="weui-form-preview__item">
                                     <label class="weui-form-preview__label">下单时间</label>
@@ -109,11 +109,11 @@
                                 <div class="weui-form-preview__item">
                                     <label class="weui-form-preview__label">订单状态</label>
                                     {% if user_order[i].Print_Status == 0 %}
-                                        <span class="weui-form-preview__value">待支付</span>
+                                        <span class="weui-form-preview__value" style="color: red">待支付</span>
                                     {% elif user_order[i].Print_Status == 1 %}
-                                        <span class="weui-form-preview__value">已支付，待打印</span>
+                                        <span class="weui-form-preview__value" style="color: #3cc51f">已支付，待打印</span>
                                     {% elif user_order[i].Print_Status == 2 %}
-                                        <span class="weui-form-preview__value">已打印</span>
+                                        <span class="weui-form-preview__value" style="color: #0894ec">已打印</span>
                                     {% endif %}
                                 </div>
                             </div>
