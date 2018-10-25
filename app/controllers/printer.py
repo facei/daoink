@@ -4,6 +4,7 @@ from flask import Flask, Blueprint, render_template, request, flash, session, re
 import datetime, os
 from app.models import db, User, Order
 from werkzeug.utils import secure_filename
+from app.pdf_operate import read_pdf_pages, switch_topdf
 printer = Blueprint(
     'printer',
     __name__
@@ -33,6 +34,12 @@ def select():
         basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
         upload_path = os.path.join(basepath, 'static/Upload_Files', secure_filename(new_filename))
         printfile.save(upload_path)
+
+        # 文件转换，以及文件页数读取
+        switch = witch_topdf(new_filename)
+        if switch = 0:
+            i = new_filename.index(".")
+            new_filename = new_filename[:i]+".pdf"
 
 
         data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
