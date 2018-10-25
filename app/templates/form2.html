@@ -11,23 +11,21 @@
 		<link rel="stylesheet" href="../static/lib/weui.min.css">
 		<link rel="stylesheet" href="../static/css/jquery-weui.css">
 		<link rel="stylesheet" href="../static/mycss/demos.css">
-    <link rel="stylesheet" href="../static/css/light7.css">
-    <style type="text/css">
-			.weui-cell{
-				height: 45px;
-			}
-		</style>
+        <link rel="stylesheet" href="../static/css/light7.css">
   </head>
 
   <body ontouchstart>
   <!--导航栏-->
-	  <header class="bar bar-nav">
-	      <a class="button button-link button-nav pull-left back" href="/select">
-	          <span class="icon icon-left"></span>
-	          	返回
-	      </a>
-	      <h1 class="title"></h1>
-	  </header>
+      <header class="bar bar-nav">
+          <a class="button button-link button-nav pull-left back" href="/select">
+              <span class="icon icon-left"></span>
+              Back
+          </a>
+          <h1 class="title"></h1>
+      </header>
+
+
+
 
     <form method="post" id="my-form" name="my-form">
         <div class="weui-cells weui-cells_form">
@@ -46,7 +44,7 @@
 
                 <div class="weui-cell__ft">
                     <!--<button class="weui-vcode-btn" id="getCode" onclick="send_message()">获取验证码</button>-->
-                    <input type="button" class="weui-vcode-btn" id ="getCode" onclick="send_message()" value = "获取验证码" style="background-color: #FDFDFD;border-top: 0;border-right: 0;border-bottom: 0;outline: 0;"/>
+                    <input type="button" class="weui-vcode-btn" id ="getCode" onclick="send_message()" value = "获取验证码" style="background-color: #00000000;border-top: 0;border-right: 0;border-bottom: 0;outline: 0;"/>
                 </div>
             </div>
 
@@ -79,13 +77,22 @@
                     <img class="weui-vcode-img" src="">
                 </div>
             </div>
+
+
         </div>
 
         <div class="weui-cells__tips">
+{#            <label for="weuiAgree" class="weui-agree">#}
+{#                <input id="weuiAgree" type="checkbox" id="agree" class="weui-agree__checkbox">#}
+{#                <span class="weui-agree__text">#}
+{#	        	阅读并同意<a href="javascript:void(0);">《相关条款》</a>#}
+{#                    阅读并同意<a href="/clause">《相关条款》</a>#}
+{#	            </span>#}
+{#            </label>#}
             <input id="weuiAgree" type="checkbox" id="agree" class="weui-agree__checkbox">
             <span class="weui-agree__text">
-	        		阅读并同意<a href="/clause" id="clause">《相关条款》</a>
-	      		</span>
+	        	阅读并同意<a href="/clause" id="clause">《相关条款》</a>
+	      </span>
         </div>
         <div class="weui-btn-area">
             <input class="weui-btn weui-btn_primary" type="button" name="save" value="确认" id="save" onclick="check_data()" />
