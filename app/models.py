@@ -28,12 +28,12 @@ class Order(db.Model):
     Print_Place = db.Column(db.String(255), nullable=False)
     Print_pages = db.Column(db.Integer())                           # 每份页数  *
     Print_Copies = db.Column(db.Integer())                          # 份数
-    Print_Direction = db.Column(db.String(255), nullable=False)
+    Print_Direction = db.Column(db.String(255), nullable=False)     # 横向，纵向
     Print_Colour = db.Column(db.String(255), nullable=False)
     Print_size = db.Column(db.String(255), nullable=False)
     Print_way = db.Column(db.String(255), nullable=False)           # 打印的方式，单面或双面
     Print_Money = db.Column(db.Float())                             # 订单价格
-    Print_Status = db.Column(db.Integer(), default=0)               # 订单状态，0:已提交文件但未支付, 1:已经支付但未打印, 2:已经打印
+    Print_Status = db.Column(db.Integer(), default=0)               # 订单状态，0:已提交文件但未支付, 1:已经支付但未打印, 2:已经加入下载队列, 3:已打印
     Trade_Number = db.Column(db.String(255))                        # 支付订单号
 
 
@@ -44,25 +44,3 @@ class Order(db.Model):
 
 
 
-#
-# class Mession(db.Model):
-#     __tablename__ = 'Mession'
-#
-#     Id = db.Column(db.Integer(), primary_key=True)
-#     Title = db.Column(db.String(255), nullable=False)
-#     Details = db.Column(db.String(255), nullable=False)
-#     Picture_Name = db.Column(db.String(255))
-#
-#
-#     Born_Date = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
-#     Dead_Date = db.Column(db.DateTime, nullable=False)
-#     Got_Date = db.Column(db.DateTime)                                                     # 接单的时间
-#     Finish_Date = db.Column(db.DateTime)
-#     Finish = db.Column(db.Integer(), nullable=False)
-#
-#     Maker_Id = db.Column(db.Integer(), db.ForeignKey('User.Id'), nullable=False)         # 发单用户的Id
-#     Worker_Id = db.Column(db.Integer(), db.ForeignKey('User.Id'))                          # 接单用户的Id
-#
-#     Maker = db.relationship('User', foreign_keys='Mession.Maker_Id')
-#     Worker = db.relationship('User', foreign_keys='Mession.Worker_Id')
-#
