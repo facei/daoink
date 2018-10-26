@@ -37,7 +37,7 @@ def select():
 
         # 文件转换，以及文件页数读取
         switch = witch_topdf(new_filename)
-        if switch = 0:
+        if switch == 0:
             i = new_filename.index(".")
             new_filename = new_filename[:i]+".pdf"
 
