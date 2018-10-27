@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #coding:utf-8
-from flask import Flask, Blueprint, render_template, request, flash, session, redirect, url_for, g
+from flask import Flask, Blueprint, render_template, request, flash, session, redirect, url_for, g, jsonify
 from app import sms
 import json
 from app.models import db, User
@@ -17,6 +17,7 @@ def register():
     :return:
     """
     error_msg = None
+    success = None
     if request.method == 'GET':
         # 获取 GET 请求参数
         phone_number = request.args.get('mobile_phone_number')
@@ -32,16 +33,18 @@ def register():
         password = request.form['password']
 
         if code == '':
-            error_msg = 'Please input the verification code!'
+            error_msg = '请输入验证码'
         elif User.query.filter(User.Tel_Number == phone_number).first():
             error_msg = u'手机号已经注册过了'
-        elif sms.verify(phone_number, code):
-            user_forsql = User()
-            user_forsql.Password = password
-            user_forsql.Tel_Number = phone_number
-            db.session.add(user_forsql)
-            db.session.commit()
-            return redirect(url_for('printer.select'))
+        # elif sms.verify(phone_number, code):
+        elif 1:
+            # user_forsql = User()
+            # user_forsql.Password = password
+            # user_forsql.Tel_Number = phone_number
+            # db.session.add(user_forsql)
+            # db.session.commit()
+            success = 1
+            return render_template('form.html', success=success)
         else:
             error_msg = u'验证码不正确，请检查！'
             return render_template('form.html', error_msg=error_msg)
@@ -53,6 +56,7 @@ def clause():
 
 @login.route("/login/", methods=['POST', 'GET'])
 def do_login():
+    flag = 0
     if request.method == 'POST':
         tel = request.form.get('tel')
         password = request.form.get('password')
@@ -64,11 +68,16 @@ def do_login():
             g.current_user = user
             print "Log in OK"
             flag = 1
-            return redirect('/select?flag=2')
+            # return jsonify(flag)
+
+            return redirect('/')
         else:
             print "Log in Failed"
             flag = 2
-            return redirect('/select?flag=2')
+            # return jsonify(flag)
+            return render_template('login.html', flag=flag)
+    # if request.method == 'GET':
+    return render_template('login.html', flag=flag)
 
 
 @login.route("/logout", methods=['GET'])
@@ -76,7 +85,7 @@ def logout():
     session.pop('user_phone', None)
     g.current_userphone = json.dumps(None)
     g.current_user = None
-    return render_template('index.html')
+    return redirect('/')
 
 
 

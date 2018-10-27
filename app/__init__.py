@@ -25,11 +25,13 @@ def index():
     if g.current_user != None:
         user_order = Order.query.filter(Order.User_Id == g.current_user.Id).all()
         lenth = len(user_order)
+
         return render_template('index.html', user_order=user_order, lenth=lenth)
     else:
         user_order = None
         lenth = 0
-        return render_template('index.html', user_order=user_order, lenth=lenth)
+        return redirect('/login')
+        # return render_template('index.html', user_order=user_order, lenth=lenth)
 
 
 @app.before_request

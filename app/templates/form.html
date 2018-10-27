@@ -107,6 +107,18 @@
 
   {% endif %}
 
+  {% if success == 1 %}
+      <script>
+          $(function() {
+              $.alert("注册成功", "提示",
+              function () {
+                  window.location.href='/';
+              }
+              )
+          });
+      </script>
+  {% endif %}
+
 
     <script>
       $(function() {
@@ -138,7 +150,7 @@
             else {
                 document.getElementById('my-form').submit();
             }
-            var backcode = {{ error_msg|tojson }};
+            var backcode = {{ error_msg }};
 {#            if(backcode){#}
 {#                $.toptip(backcode);#}
 {#                $(function() {#}

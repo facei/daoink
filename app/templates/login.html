@@ -1,150 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Roo-Ins</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
 
-    <script type="text/javascript">
-        var cur_count;
-        var count = 60; // 重复发送验证码的周期(s)
-        var InterValObj;
-        var phone_number;
-        function send_message()
-        {
-            // 获取用户输入的手机号码
-            // 如果手机号码为空则弹窗提醒
-            // 否则使用 ajax 将号码提交给后台，并且开始倒计时
-            phone_number = document.getElementById("phone").value
-            if(phone_number)
-            {
-                cur_count = count;
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+		">
 
-                // 设置按钮属性，使按钮不能响应点击事件
-                document.getElementById("getCode").setAttribute("disabled", "true");
-                document.getElementById("getCode").value = "waiting for "+cur_count+"s";
-
-                // HTML DOM setInterval() 方法可以按照指定的周期（毫秒单位）来调用函数或计算表达式
-                // 这里我们以 1000 毫秒为周期重复调用 set_remain_time() 函数实现倒计时
-                InterValObj = window.setInterval(set_remain_time, 1000);
-
-                // 发送请求
-                loadXMLDoc();
-            }
-            else
-            {
-                alert('Please input phone number!')
-            }
-        }
-
-        function set_remain_time()
-        {
-            if (cur_count == 0)
-            {
-                // 将 InterValObj 传递给 clearInterval， 从而取消对 set_remian_time() 的重复调用
-                window.clearInterval(InterValObj);
-
-                // 恢复按钮响应点击事件
-                document.getElementById("getCode").removeAttribute("disabled");
-                document.getElementById("getCode").value = "Get New Code";
-            }else
-            {
-                cur_count--;
-                document.getElementById("getCode").value = "waiting for "+cur_count+"s";
-            }
-        }
-
-        function loadXMLDoc()
-        {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "test?mobile_phone_number=" + phone_number, true);
-            xmlhttp.send();
-        }
-    </script>
-
+    <link rel="stylesheet" href="../static/lib/weui.min.css">
+    <link rel="stylesheet" href="../static/css/jquery-weui.css">
+    <link rel="stylesheet" href="../static/mycss/demos.css">
+    <link rel="stylesheet" href="../static/css/light7.css">
     <style>
-        #phone{
-            position:relative;
-            top:10px;
-            left:50px;
-            width:210px;
+        body, html {
+            height: 96%;
+            -webkit-tap-highlight-color: transparent;
         }
-        #code{
-            position:relative;
-            top:30px;
-            left:50px;
-            width:100px;
-        }
-        #getCode{
-            position:relative;
-            top:30px;
-            left:50px;
-            width:100px;
-        }
-        #submit{
-            position:relative;
-            top:50px;
-            left:50px;
-            width:210px;
-        }
-        #getCode:hover,#submit:hover{
-            cursor:pointer;
-            background-color:#666;
-            color:#FFF;
-        }
-        input,button{
-            border:1px solid #999;
-            height:40px;
-            color:#666;
-        }
-        .h1{
-            position:relative;
-            top:10px;
-            left:130px;
-            color:#666;
-        }
-        .box{
-            top:20%;
-            left:33%;
-            height:300px;
-            width:300px;
-            border:dashed 2px #666;
-            position:absolute;
-        }
-        .warning{
-            position:absolute;
-            left:33%;
-            top:80%;
-        }
+        .input-focus::-webkit-input-placeholder { color: #f00; }
+        .input-focus:-moz-placeholder { color: #f00; }
+        .input-focus:-ms-input-placeholder { color: #f00; }
     </style>
 </head>
 
-<body>
-<div class="box">
-    <h1 class="h1">Lab</h1>
-    <form action="#" method="post">
-        <div>
-            <input type="text" id="phone" name="phone" placeholder="Phone Number">
+<body style="background: url(../static/images/login.jpg); background-size:100% 100%">
+    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <script src="../static/lib/fastclick.js"></script>
+    <script src="../static/js/jquery-weui.js"></script>
+    <script>
+        var UserName = '{{ g.current_userphone }}'            // 后端数据
+        var time_now = '{{ now }}'
+        var flag = '{{ flag }}'
+    </script>
+{#    <div style="background: url(../static/images/login.jpg); background-size:100% 100%; height: 639px">#}
+        <div class="weui-flex" style="margin-top: 10%; margin-left: 12%">
+            <div class="weui-flex__item">
+                <h2 style="font-family: 方正兰亭超细黑简体; color: white">袋鼠打印</h2>
+                <h6 style="font-family: '等线 Light'; color: white">远程下单，快速取件</h6>
+            </div>
         </div>
-        <div>
-            <input type="text" id="code" name="code" placeholder="Verification Code">
-            <input type="button" id ="getCode" onclick="send_message()" value = "Get Code"/>
+    <form method="post" id="my-form" name="my-form">
+        <div class="weui-cells weui-cells_form" style="background-color: rgba(18,18,18,0.32); margin-left: 30px;margin-right: 30px; margin-top: 16%">
+
+            <div class="weui-cell weui-cell_vcode" style="height: 50px">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" name="tel" placeholder="请输入手机号">
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cell_vcode" style="height: 50px">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" name="password" placeholder="请输入密码">
+                </div>
+            </div>
         </div>
-        <div>
-            <button type="submit" id="submit">Submit</button>
+
+        <br>
+        <div class="weui-flex">
+            <div class="weui-flex__item" style="margin-left: 30px; margin-right: 30px">
+                <input class="weui-btn weui-btn_primary" type="submit" value="登陆">
+            </div>
         </div>
     </form>
+    <br>
+    <div>
+        <a class="pull-right" style="margin-right: 30px" href="/register">新用户注册</a>
+        <a class="pull-left" style="margin-left: 30px" href="/register">忘记密码？</a>
+    </div>
 
-</div>
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="color: orangered; font-size: 100%; font-weight: 600">&times;关闭</span></button>
-                <div class="text-center" style="font-weight: 600">{{ message }}</div>
-            </div>
-        {% endfor %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="weui-footer">
+        <p class="weui-footer__links">
+            <a href=" " class="weui-footer__link"></a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2018 rooins.careyou.xin</p>
+    </div>
+    {% if flag == 2 %}
+        <script>
+            $(function() {
+                $.alert("登陆失败，请重试", "警告")
+            });
+        </script>
     {% endif %}
-{% endwith %}
 
+
+{#    </div>#}
 </body>
+
 </html>
