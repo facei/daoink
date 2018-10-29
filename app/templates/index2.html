@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roo-Ins</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+		">
+
+    <link rel="stylesheet" href="../static/lib/weui.min.css">
+    <link rel="stylesheet" href="../static/css/jquery-weui.css">
+    <link rel="stylesheet" href="../static/mycss/demos.css">
+    <link rel="stylesheet" href="../static/css/light7.css">
+</head>
+
+<body ontouchstart>
+    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <script>
+        var UserName = '{{ g.current_userphone }}' // 后端数据
+    </script>
+
+<div class="weui-tab">
+    <div class="weui-tab__bd">
+        <!--页面一-->
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <header class='demos-header'>
+                <h1 class="demos-title">袋鼠打印</h1>
+                <p class='demos-sub-title'>免排队，可预约的共享打印</p>
+            </header>
+
+            <table bordercolor="1px" cellspacing="40px" cellpadding="0px"  style="border-color: #E9E9E9;margin: auto;">
+                <tr><td>
+                    <a href="/select">
+                        <div>
+                            <img src="../static/images/print.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            <font size="3" face="arial rounded mt bold" style="color: #0894ec ">打印入口 点击进入</font>
+                        </p>
+                    </a>
+                </td></tr>
+            </table>
+            <div class="weui-footer">
+                <p class="weui-footer__links">
+                    <a href=" " class="weui-footer__link">Roo-Ins首页</a>
+                </p>
+                <p class="weui-footer__text">Copyright © 2018 rooins.careyou.xin</p>
+            </div>
+            <br>
+            <br>
+        </div>
+
+        <!--页面二-->
+        <div id="tab2" class="weui-tab__bd-item">
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form" action="#">
+                    <div class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>搜索</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+            开发中......
+        </div>
+
+        <!--页面三-->
+        <div id="tab3" class="weui-tab__bd-item" >
+            <header class='demos-header'>
+                <h1 class="demos-title">历史订单</h1>
+            </header>
+        <div id="firstpage">
+                {% if g.current_user == None %}
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                            <i class="weui-icon-info weui-icon_msg" style="margin-left: 37%"></i>
+                        </div>
+                    </div>
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                            <label style="margin-left: 36%">您还没有登陆！</label>
+                        </div>
+                    </div>
+                {% else %}
+                    {% if lenth != 0 %}
+                        {% for i in range(lenth) %}
+                            <div class="weui-form-preview">
+                                <div class="weui-form-preview__hd">
+                                    <label class="weui-form-preview__label">付款金额</label>
+                                    <em class="weui-form-preview__value">¥{{ user_order[i].Print_Money }}</em>
+                                </div>
+                                <div class="weui-form-preview__bd">
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">文件</label>
+                                        <span class="weui-form-preview__value">{{ user_order[i].File_Name }}</span>
+                                    </div>
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">下单时间</label>
+                                        <span class="weui-form-preview__value">{{ user_order[i].Born_Date }}</span>
+                                    </div>
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">打印点</label>
+                                        <span class="weui-form-preview__value">{{ user_order[i].Print_Place }}</span>
+                                    </div>
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">订单状态</label>
+                                        {% if user_order[i].Print_Status == 0 %}
+                                            <span class="weui-form-preview__value" style="color: red">待支付</span>
+                                        {% elif user_order[i].Print_Status == 1 %}
+                                            <span class="weui-form-preview__value" style="color: #3cc51f">已支付，待打印</span>
+                                        {% elif user_order[i].Print_Status == 2 %}
+                                            <span class="weui-form-preview__value" style="color: #0894ec">已打印</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="weui-form-preview__ft">
+                                    <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">辅助操作</a>
+                                    <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</button>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                        {% endfor %}
+                    {% else %}
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <i class="weui-icon-info weui-icon_msg" style="margin-left: 37%"></i>
+                            </div>
+                        </div>
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <label style="margin-left: 28%">您还没有创建过订单！</label>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endif %}
+        </div>
+
+{#            数据分页#}
+            <div id="box">
+
+            </div>
+
+{#        复制分页#}
+            <div class="weui-form-preview " id="copy" style="visibility: hidden; display: none">
+                <div style="background-color: rgba(126,126,127,0.29)">
+                    <div class="weui-form-preview__hd">
+                        <label class="weui-form-preview__label" >付款金额</label>
+                        <em class="weui-form-preview__value" id="money"></em>
+                    </div>
+                    <div class="weui-form-preview__bd">
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label" >文件</label>
+                            <span class="weui-form-preview__value" id="filename"></span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label" >下单时间</label>
+                            <span class="weui-form-preview__value" id="orderdate" style="font-size: 119%"></span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label" >打印点</label>
+                            <span class="weui-form-preview__value" id="orderplace"></span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">订单状态</label>
+                            <span class="weui-form-preview__value"  id="orderstatus"></span>
+                        </div>
+                    </div>
+                    <div class="weui-form-preview__ft">
+                        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">辅助操作</a>
+                        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</button>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+
+
+
+
+
+            {% if pagination.pages >= 1 %}
+                <select id="pages" class="weui-select-modal " style="margin-bottom: 20%; margin-left: 45%" >
+                    {% for i in range(pagination.pages) %}
+                        <option value="{{ i+1 }}" >第{{ i+1 }}页</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            <script>
+                $("#pages").change(function(){
+{#                    $('#info').html("");#}
+                    $("#firstpage").css("visibility", "hidden");
+                    $("#firstpage").css("display", "none");
+
+                    $("#money").text("");
+                    $("#filename").text("");
+                    $("#orderdate").text("");
+                    $("#orderplace").text("");
+                    $("#orderstatus").text("");
+
+                    document.getElementById('box').innerHTML="";
+                    var opt=$("#pages").val();
+{#                    alert(opt)#}
+                    var data = {};
+                    data['page'] = opt;
+                    $.ajax({								// 提交POST请求给后端
+                        type: 'POST',
+                        url: '/',
+                        data: data,
+                        dataType: 'json',
+                        success: function (data) {
+                            for(var j =0;j<data.objects.length;j++){
+                                var box = document.getElementById("box");
+                                $("#money").text(data.objects[j].Print_Money);
+                                $("#filename").text(data.objects[j].File_Name);
+                                $("#orderdate").text(data.objects[j].Born_Date);
+                                $("#orderplace").text(data.objects[j].Print_Place);
+                                if(data.objects[j].Print_Status === 0){
+                                    $("#orderstatus").text("待支付");
+                                    $("#orderstatus").css("color","red")
+                                }else if(data.objects[j].Print_Status === 1){
+                                    $("#orderstatus").text("等待加入打印队列");
+                                    $("#orderstatus").css("color","blue")
+                                }else if(data.objects[j].Print_Status === 2){
+                                    $("#orderstatus").text("正在打印队列中，等待打印");
+                                    $("#orderstatus").css("color","yellow")
+                                }else if(data.objects[j].Print_Status === 3){
+                                    $("#orderstatus").text("已经打印,请尽快前往打印点取走文件");
+                                    $("#orderstatus").css("color","#36af4b")
+                                }
+
+
+                                var copy = document.getElementById("copy");
+                                var mid = copy.innerHTML;
+                                mid = mid.replace('money','');
+                                mid = mid.replace('filename','');
+                                mid = mid.replace('orderdate','');
+                                mid = mid.replace('orderplace','');
+                                mid = mid.replace('orderstaus','');
+                                var order=document.createElement("r");
+                                order.innerHTML=mid;
+
+{#                                alert(typeof (order));#}
+{#                                var money = order.getElementById('money');#}
+{#                                var money = order.$("#money")#}
+{#                                money.innerHTML = "¥" + data.objects[j].Print_Money;#}
+{#                                $("#money").text(data.objects[1].Print_Money);#}
+{#                                txt.innerHTML=data.objects[j].Born_Date;#}
+                                box.appendChild(order);
+{#                                box.appendChild(txt);#}
+{#                                var money = document.getElementById("money");#}
+
+                            }
+{#                            window.location.reload();#}
+{#                                window.location.href='/';#}
+{#                            $.getJSON('/'#}
+{#                                , function (data) {                    // 从Flask返回的数据#}
+{#                                    alert("success");                     // 浏览器弹窗显示 后端返回的dict["a"]的值，此次是1#}
+{#                                }#}
+{#                            )#}
+
+
+                        },
+                        error: function () {
+                            // window.location.reload();
+                            // window.location.href='/select';
+                            {#                            $.getJSON('/login'#}
+                            {#                                , function (data) {                    // 从Flask返回的数据#}
+                            {#                                    alert(data.flag)                     // 浏览器弹窗显示 后端返回的dict["a"]的值，此次是1#}
+                            {#                                }#}
+                            {#                            )#}
+
+                        }
+                    })
+{#                    $.getJSON('/'#}
+{#                        , function(data) {                    // 从Flask返回的数据#}
+{#                            var backdata = JSON.stringify(data);#}
+{#                            alert(backdata)#}
+{##}
+{#                        }#}
+{#                    )#}
+
+
+                });
+            </script>
+
+
+
+
+        </div>
+
+        <!--页面四-->
+        <div id="tab4" class="weui-tab__bd-item">
+            <div class="weui-cells__title">个人主页</div>
+            <div class="weui-cells">
+                <div class="weui-cell">
+
+                    <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+                        <img src="../static/images/roo.gif" style="width: 50px;height: 50px;display: block;">
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div>
+                            <p>{{ g.current_userphone }}</p>
+                            {#                          <p style="font-size: 13px;color: #888888;">余额：{{ g.current_user.Money }}元</p>#}
+                        </div>
+                    </div>
+                    {% if g.current_userphone != 'null' %}
+                        <div class="weui-cell__ft">
+                            <a href="/logout">退出登录</a>
+                        </div>
+                    {% else %}
+                        <div class="weui-cell__ft">
+                            <a href="/select">请登录</a>
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="weui-cell weui-cell_access" id="login">
+                    <div class="weui-cell__bd">
+                        <span style="vertical-align: middle">注册</span>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </div>
+                <div class="weui-cell weui-cell_access">
+                    <div class="weui-cell__bd">
+                        <span style="vertical-align: middle">我的消息</span>
+                        <span class="weui-badge" style="margin-left: 5px;">0</span>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </div>
+                {#			      <div class="weui-cell weui-cell_access">#}
+                {#			        <div class="weui-cell__bd">#}
+                {#			          <span style="vertical-align: middle">卡券红包</span>#}
+                {#			        </div>#}
+                {#			        <div class="weui-cell__ft"></div>#}
+                {#			      </div>#}
+                {#			      <div class="weui-cell weui-cell_access">#}
+                {#			        <div class="weui-cell__bd">#}
+                {#			          <span style="vertical-align: middle">定位</span>#}
+                {#			        </div>#}
+                {#			        <div class="weui-cell__ft"></div>#}
+                {#			      </div>#}
+            </div>
+            <div class="weui-cells__title"></div>
+            <div class="weui-cells">
+                <div class="weui-cell weui-cell_access">
+                    <div class="weui-cell__bd">加盟打印点</div>
+                    <div class="weui-cell__ft" style="font-size: 0">
+                        <span style="vertical-align:middle; font-size: 17px;">详细信息</span>
+                    </div>
+                </div>
+                <div class="weui-cell weui-cell_access">
+                    <div class="weui-cell__bd">
+                        <span style="vertical-align: middle">客服与帮助</span>
+                    </div>
+                    <div class="weui-cell__ft"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-tabbar">
+            <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+                <div class="weui-tabbar__icon">
+                    <img src="../static/images/home.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a href="#tab2" class="weui-tabbar__item">
+                {#                消息个数#}
+                {#	        	<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">0</span>#}
+                <div class="weui-tabbar__icon">
+                    <img src="../static/images/data.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">资料共享</p>
+            </a>
+            <a href="#tab3" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="../static/images/icon_nav_article.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">订单</p>
+            </a>
+            <a href="#tab4" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="../static/images/member.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<style>
+    .weui-footer {
+        margin: 25px 0 10px 0;
+    }
+</style>
+
+<script src="../static/lib/jquery-2.1.4.js"></script>
+<script src="../static/lib/fastclick.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+    $("#login").click(function(){
+        window.location.href='/register';
+    });
+</script>
+<script src="../static/js/jquery-weui.js"></script>
+
+</body>
+</html>

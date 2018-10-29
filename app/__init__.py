@@ -20,13 +20,31 @@ def time_format(l):
 app.add_template_filter(time_format, 'format_time')
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    if g.current_user != None:
-        user_order = Order.query.filter(Order.User_Id == g.current_user.Id).all()
+    if request.method == 'POST':
+        page = request.form.get('page')
+        page = int(page)
+        pagination = Order.query.filter(Order.User_Id == g.current_user.Id).order_by(Order.Id.desc()).paginate(page, per_page=10, error_out=False)
+        user_order = pagination.items
         lenth = len(user_order)
-
-        return render_template('index.html', user_order=user_order, lenth=lenth)
+        tem = []
+        for x in user_order:
+            tem.append(x.to_json())
+        # return render_template('index2.html', user_order=user_order, lenth=lenth, pagination=pagination)
+        print jsonify(tem)
+        return jsonify(objects = tem)
+    if g.current_user != None:
+        # user_order = Order.query.filter(Order.User_Id == g.current_user.Id).order_by(Order.Id.desc()).all()
+        # lenth = len(user_order)
+        #
+        # return render_template('index.html', user_order=user_order, lenth=lenth)
+        page = request.form.get('page', 1)
+        page = int(page)
+        pagination = Order.query.filter(Order.User_Id == g.current_user.Id).order_by(Order.Id.desc()).paginate(page, per_page=10, error_out=False)
+        user_order = pagination.items
+        lenth = len(user_order)
+        return render_template('index2.html', user_order=user_order, lenth=lenth, pagination=pagination)
     else:
         user_order = None
         lenth = 0

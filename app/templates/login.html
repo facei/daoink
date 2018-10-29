@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body style="background: url(../static/images/login.jpg); background-size:100% 100%">
+<body style="background: url(../static/images/login2.jpg); background-size:100% 100%; " >
     <script src="../static/lib/jquery-2.1.4.js"></script>
     <script src="../static/lib/fastclick.js"></script>
     <script src="../static/js/jquery-weui.js"></script>
@@ -38,7 +38,7 @@
         <div class="weui-flex" style="margin-top: 10%; margin-left: 12%">
             <div class="weui-flex__item">
                 <h2 style="font-family: 方正兰亭超细黑简体; color: white">袋鼠打印</h2>
-                <h6 style="font-family: '等线 Light'; color: white">远程下单，快速取件</h6>
+                <h6 style="font-family: '等线 Light'; color: white">远程下单，快速自取</h6>
             </div>
         </div>
     <form method="post" id="my-form" name="my-form">
@@ -46,13 +46,13 @@
 
             <div class="weui-cell weui-cell_vcode" style="height: 50px">
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="tel" name="tel" placeholder="请输入手机号">
+                    <input class="weui-input" type="tel" name="tel" placeholder="请输入手机号" required="required">
                 </div>
             </div>
 
             <div class="weui-cell weui-cell_vcode" style="height: 50px">
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="password" name="password" placeholder="请输入密码">
+                    <input class="weui-input" type="password" name="password" placeholder="请输入密码" required="required">
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
         <br>
         <div class="weui-flex">
             <div class="weui-flex__item" style="margin-left: 30px; margin-right: 30px">
-                <input class="weui-btn weui-btn_primary" type="submit" value="登陆">
+                <input class="weui-btn weui-btn_primary" type="submit" value="登录">
             </div>
         </div>
     </form>
@@ -84,7 +84,7 @@
     {% if flag == 2 %}
         <script>
             $(function() {
-                $.alert("登陆失败，请重试", "警告")
+                $.alert("登录失败，请重试", "警告")
             });
         </script>
     {% endif %}

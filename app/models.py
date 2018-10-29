@@ -40,6 +40,16 @@ class Order(db.Model):
     User_Id = db.Column(db.Integer(), db.ForeignKey('User.Id'), nullable=False)
     user = db.relationship('User', foreign_keys='Order.User_Id')
 
+    def to_json(self):
+        born_date = str(self.Born_Date.year)+"-"+str(self.Born_Date.month)+"-"+str(self.Born_Date.day)+" "+str(self.Born_Date.hour)+":"+str(self.Born_Date.minute)+":"+str(self.Born_Date.second)
+        return {
+                'Print_Money': self.Print_Money,
+                'File_Name': self.File_Name,
+                'Born_Date': born_date,
+                'Print_Place': self.Print_Place,
+                'Print_Status': self.Print_Status
+        }
+
 
 
 
