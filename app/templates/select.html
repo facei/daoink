@@ -19,7 +19,13 @@
   <script>
       var UserName = '{{ g.current_userphone }}'            // 后端数据
       var time_now = '{{ now }}'
-      var flag = '{{ flag }}'
+      var error = '{{ error }}'
+
+      if(error === 1){
+          $(function() {
+              $.alert("此文件不能被系统转换处理，请重试", "警告")
+          });
+      }
   </script>
 
 
@@ -46,8 +52,9 @@
 	        <div class="weui-cell__bd">
 	          <div class="weui-uploader">
 	            <div class="weui-uploader__hd">
-	              <p class="weui-uploader__title" >文件上传</p>
-	              <div class="weui-uploader__info">暂只支持单文件上传打印</div>
+	                <p class="weui-uploader__title" >文件上传<h6 class="pull-right" style="margin-right: -75px">(支持pdf,doc,ppt,xls,png,jpg,jpeg格式的文件)</h6></p>
+                    <p class="weui-uploader__title"></p>
+	              <div class="weui-uploader__info"></div>
 	            </div>
 	            <div class="weui-uploader__bd">
 {#	              <ul class="weui-uploader__files" id="uploaderFiles">#}
@@ -65,7 +72,7 @@
 {#	              </ul>#}
 	              <div class="">
 {#	                <input id="uploaderInput" class="weui-uploader__input" type="file"  accept=".xls,.doc,.txt,.pdf" multiple="">#}
-                    <input name="uploadfile" class="" type="file" required="required" accept="application/msword,application/vnd.ms-excel,application/pdf,image/jpeg,application/vnd.ms-powerpoint">
+                    <input name="uploadfile" class="" type="file" required="required" accept="application/msword, application/vnd.ms-excel, application/pdf, image/*, application/vnd.ms-powerpoint">
 	              </div>
 	            </div>
 	          </div>
