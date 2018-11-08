@@ -75,6 +75,7 @@
             <header class='demos-header'>
 			      <h1 class="demos-title">历史订单</h1>
             </header>
+
             {% if g.current_user == None %}
                 <div class="weui-flex">
                     <div class="weui-flex__item">
@@ -161,11 +162,11 @@
 			        </div>
                       {% if g.current_userphone != 'null' %}
                           <div class="weui-cell__ft">
-                              <a href="/logout">退出登陆</a>
+                              <a href="/logout">退出登录</a>
                           </div>
                       {% else %}
                           <div class="weui-cell__ft">
-                              <a href="/select">请登陆</a>
+                              <a href="/select">请登录</a>
                           </div>
                       {% endif %}
 

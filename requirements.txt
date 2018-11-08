@@ -14,9 +14,13 @@ itsdangerous==0.24
 Jinja2==2.10
 lxml==4.2.5
 MarkupSafe==1.0
+Naked==0.1.31
 pycparser==2.19
 PyMySQL==0.9.2
+PyPDF2==1.26.0
+PyYAML==3.13
 requests==2.19.1
+shellescape==3.4.1
 six==1.11.0
 SQLAlchemy==1.2.12
 urllib3==1.23
