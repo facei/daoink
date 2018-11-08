@@ -5,6 +5,7 @@ import datetime, os
 from app.models import db, User, Order
 from werkzeug.utils import secure_filename
 from app.pdf_operate import read_pdf_pages, switch_topdf
+from PyPDF2 import PdfFileReader
 printer = Blueprint(
     'printer',
     __name__
@@ -25,21 +26,59 @@ def select():
         paper_size = request.form.get("paper_size")     # 纸张大小
         print_way = request.form.get("print_way")       # 单双面
         time_way = request.form.get("time_way")         # 预约或自动排队
+        pageCount = 1                                   # 文件页数
         cost = 0.01
+
 
         filename = printfile.filename
         index_point = filename.index(".")
         new_filename = str(g.current_user.Tel_Number)+"_" + now + filename[index_point:]
-        # basepath = os.path.dirname(__file__)
         basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-        upload_path = os.path.join(basepath, 'static/Upload_Files', secure_filename(new_filename))
-        printfile.save(upload_path)
 
-        # 文件转换，以及文件页数读取
-        switch = witch_topdf(new_filename)
-        if switch == 0:
-            i = new_filename.index(".")
-            new_filename = new_filename[:i]+".pdf"
+
+        # 判断文件类型
+
+        # 识别不需要转换的文件
+
+        if filename[index_point:] in [".pdf", ".jpg", ".png", "jpeg"]:
+            upload_path = os.path.join(basepath, 'static/Upload_Files', secure_filename(new_filename))
+            printfile.save(upload_path)
+
+            if filename[index_point:] != '.pdf':
+                # cost = 0.2
+                pageCount = 1
+            else:
+                # 读取页数
+                with open('../static/Upload_Files/{}' .format(new_filename)) as f:
+                    pdfReader = PdfFileReader(f)
+                    pageCount = pdfReader.getNumPages()
+                    cost = pageCount*cost
+
+
+
+        # 需要转换格式的文件
+        else:
+            upload_path = os.path.join(basepath, 'static/Upload_Files/BeforeSwitchFile/', secure_filename(new_filename))
+            printfile.save(upload_path)
+
+            # 对doc,ppt,xml文件转换，以及文件页数读取
+            switch = switch_topdf(new_filename)
+            if switch == 0:
+                i = new_filename.index(".")
+                new_filename = new_filename[:i]+".pdf"
+                # 读取文件页数
+                with open('../static/Upload_Files/{}' .format(new_filename)) as f:
+                    pdfReader = PdfFileReader(f)
+                    pageCount = pdfReader.getNumPages()
+                    cost = pageCount*cost
+            else:
+                # 转换失败,返回用户文件格式不对
+                error = 1
+                return render_template('select.html', now=now, error=error)
+
+
+
+
 
 
         data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
@@ -60,6 +99,7 @@ def select():
         order_forsql.Print_way = print_way
         order_forsql.Print_Money = cost
         order_forsql.Print_Status = 0
+        order_forsql.Print_pages = pageCount
 
         db.session.add(order_forsql)
         db.session.commit()
