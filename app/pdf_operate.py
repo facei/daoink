@@ -15,8 +15,7 @@ def read_pdf_pages(file):
 
 
 def switch_topdf(filename):
-    cmd = "libreoffice --headless --convert-to pdf:writer_pdf_Export ../static/Upload_Files/BeforeSwitchFile/{} " \
-          "--outdir /../static/Upload_Files/" .format(filename)
+    cmd = "libreoffice --headless --convert-to pdf:writer_pdf_Export ../static/Upload_Files/BeforeSwitchFile/{} --outdir ../static/Upload_Files/" .format(filename)
     try:
         returnCode = subprocess.call(cmd, shell=True)
         if returnCode != 0:
