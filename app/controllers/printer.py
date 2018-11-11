@@ -49,10 +49,12 @@ def select():
                 pageCount = 1
             else:
                 # 读取页数
-                with open('../static/Upload_Files/{}' .format(new_filename)) as f:
-                    pdfReader = PdfFileReader(f)
-                    pageCount = pdfReader.getNumPages()
-                    cost = pageCount*cost
+                FileDir = "../static/Upload_Files/{}" .format(new_filename)
+                pageCount = read_pdf_pages(FileDir)
+                # with open('../static/Upload_Files/{}' .format(new_filename)) as f:
+                #     pdfReader = PdfFileReader(f)
+                #     pageCount = pdfReader.getNumPages()
+                #     cost = pageCount*cost
 
 
 
@@ -67,10 +69,13 @@ def select():
                 i = new_filename.index(".")
                 new_filename = new_filename[:i]+".pdf"
                 # 读取文件页数
-                with open('../static/Upload_Files/{}' .format(new_filename)) as f:
-                    pdfReader = PdfFileReader(f)
-                    pageCount = pdfReader.getNumPages()
-                    cost = pageCount*cost
+                FileDir = "../static/Upload_Files/{}" .format(new_filename)
+                pageCount = read_pdf_pages(FileDir)
+                cost = pageCount*cost
+                # with open('../static/Upload_Files/{}' .format(new_filename)) as f:
+                #     pdfReader = PdfFileReader(f)
+                #     pageCount = pdfReader.getNumPages()
+                #     cost = pageCount*cost
             else:
                 # 转换失败,返回用户文件格式不对
                 error = 1
