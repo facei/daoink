@@ -33,49 +33,42 @@ def select():
         filename = printfile.filename
         index_point = filename.index(".")
         new_filename = str(g.current_user.Tel_Number)+"_" + now + filename[index_point:]
-        basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-
-
+        # basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+        basepath = os.path.abspath(os.path.dirname(__file__))       # 当前文件所在目录
+        parentdir = os.path.dirname(basepath)                       # 父级目录
         # 判断文件类型
 
         # 识别不需要转换的文件
 
         if filename[index_point:] in [".pdf", ".jpg", ".png", "jpeg"]:
-            upload_path = os.path.join(basepath, 'static/Upload_Files', secure_filename(new_filename))
+            upload_path = os.path.join(parentdir, 'static/Upload_Files', secure_filename(new_filename))
             printfile.save(upload_path)
 
-            if filename[index_point:] != '.pdf':
-                # cost = 0.2
+            if filename[index_point:] != '.pdf':        # 图片文件一律按1页处理
                 pageCount = 1
+                cost = pageCount*cost
             else:
                 # 读取页数
-                FileDir = "../static/Upload_Files/{}" .format(new_filename)
-                pageCount = read_pdf_pages(FileDir)
-                # with open('../static/Upload_Files/{}' .format(new_filename)) as f:
-                #     pdfReader = PdfFileReader(f)
-                #     pageCount = pdfReader.getNumPages()
-                #     cost = pageCount*cost
+                pageCount = read_pdf_pages(upload_path)
+                cost = pageCount*cost
 
 
 
         # 需要转换格式的文件
         else:
-            upload_path = os.path.join(basepath, 'static/Upload_Files/BeforeSwitchFile/', secure_filename(new_filename))
+            # 先将文件保存再处理
+            upload_path = os.path.join(parentdir, 'static/Upload_Files/BeforeSwitchFile/', secure_filename(new_filename))
             printfile.save(upload_path)
 
             # 对doc,ppt,xml文件转换，以及文件页数读取
-            switch = switch_topdf(new_filename)
+            switch = switch_topdf(upload_path)
             if switch == 0:
                 i = new_filename.index(".")
                 new_filename = new_filename[:i]+".pdf"
                 # 读取文件页数
-                FileDir = "../static/Upload_Files/{}" .format(new_filename)
-                pageCount = read_pdf_pages(FileDir)
+                pageCount = read_pdf_pages(upload_path)
                 cost = pageCount*cost
-                # with open('../static/Upload_Files/{}' .format(new_filename)) as f:
-                #     pdfReader = PdfFileReader(f)
-                #     pageCount = pdfReader.getNumPages()
-                #     cost = pageCount*cost
+
             else:
                 # 转换失败,返回用户文件格式不对
                 error = 1
