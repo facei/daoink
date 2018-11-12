@@ -81,7 +81,7 @@ def select():
 
 
         data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
-                "print_way": print_way, "time_way": time_way, "cost": cost}
+                "print_way": print_way, "time_way": time_way, "cost": cost, "pageCount": pageCount}
 
         # 写入数据库
         user = User.query.filter(User.Tel_Number == g.current_userphone).first()
