@@ -31,7 +31,7 @@ def select():
 
 
         filename = printfile.filename
-        index_point = filename.index(".")
+        index_point = filename.rindex(".")
         new_filename = str(g.current_user.Tel_Number)+"_" + now + filename[index_point:]
         # basepath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
         basepath = os.path.abspath(os.path.dirname(__file__))       # 当前文件所在目录
@@ -63,7 +63,7 @@ def select():
             # 对doc,ppt,xml文件转换，以及文件页数读取
             switch = switch_topdf(upload_path)
             if switch == 0:
-                i = new_filename.index(".")
+                i = new_filename.rindex(".")
                 new_filename = new_filename[:i]+".pdf"
                 switched_dir = os.path.join(parentdir, 'static/Upload_Files', secure_filename(new_filename))  # 转换pdf后的文件路径
                 # 读取文件页数
