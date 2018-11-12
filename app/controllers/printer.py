@@ -65,8 +65,9 @@ def select():
             if switch == 0:
                 i = new_filename.index(".")
                 new_filename = new_filename[:i]+".pdf"
+                switched_dir = os.path.join(parentdir, 'static/Upload_Files', secure_filename(new_filename))  # 转换pdf后的文件路径
                 # 读取文件页数
-                pageCount = read_pdf_pages(upload_path)
+                pageCount = read_pdf_pages(switched_dir)
                 cost = pageCount*cost
 
             else:
