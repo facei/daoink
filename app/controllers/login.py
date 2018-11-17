@@ -87,7 +87,9 @@ def logout():
     g.current_user = None
     return redirect('/')
 
-
+@login.route("/join", methods=['GET'])
+def join():
+    return render_template('join.html')
 
 # @login.route("/test", methods=['POST', 'GET'])
 # def logins():
