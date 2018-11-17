@@ -6,6 +6,7 @@ from config import DevConfig
 from models import db, User, Order
 from controllers.printer import printer
 from controllers.login import login
+from controllers.document_share import document_share
 import datetime, json
 
 app = Flask(__name__)
@@ -68,6 +69,7 @@ def check_user():
 
 app.register_blueprint(printer)
 app.register_blueprint(login)
+app.register_blueprint(document_share)
 
 if __name__ == '__main__':
     app.run(host='192.168.3.5', port=80)
