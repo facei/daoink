@@ -1,4 +1,4 @@
-# rooprint
+# rooins
 袋鼠打印，在线共享打印平台
 ## 1. 简介
 ### 理念 
@@ -18,7 +18,7 @@
 3. 服务端：centos7 apache(或Nginx)
 4. 硬件：raspberry3B(树莓派), 普通打印机
 ### APP的安装部署
-####1. 下载源码到服务器, 下载目录自定义, 此文全篇以```/var/www/```为例子\
+#### 1. 下载源码到服务器, 下载目录自定义, 此文全篇以```/var/www/```为例子\
 ``cd /var/www``\
 ``git clone https://github.com/hopeaktian/rooins.git``
 #### 2. 创建python2.7 虚拟环境 \
@@ -40,14 +40,14 @@
 ``cd /var/www/roorins/app``\
 ``vim config.py``\
 将config.py中的第9行修改为自己的数据库用户，密码，数据库地址，数据库名
-#### 3. 运行
+#### 5. 运行
 1. 方法一：直接使用python命令运行(不推荐)\
 首先激活python虚拟环境
 ``source /var/www/rooins/env/bin/activate``\
 然后运行
 ``python /var/www/rooins/app/__init__.py``
 
-2. 方法二：以Apache wsgi的的方式运行\
+2. 方法二：以Apache wsgi的的方式运行
 - 首先创建wsgi文件
 参考示例：\
 rooins.wsgi
