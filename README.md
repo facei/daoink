@@ -72,7 +72,7 @@ from app import app
 
 application = app
 ```
-- 然后在Apache中配置wsgi，具体方法参考https://dormousehole.readthedocs.io/en/latest/deploying/mod_wsgi.html\
+- 然后在Apache中配置wsgi，具体方法参考https://dormousehole.readthedocs.io/en/latest/deploying/mod_wsgi.html \
 配置好后，重启Apache,就可以访问。
 
 ### 树莓派端部署
