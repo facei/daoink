@@ -1,5 +1,10 @@
 # rooins
 袋鼠打印，在线共享打印平台
+![APP首页1](https://github.com/hopeaktian/demo/blob/master/rooins1.png)
+![APP首页2](https://github.com/hopeaktian/demo/blob/master/rooins2.png)
+![APP首页3](https://github.com/hopeaktian/demo/blob/master/rooins3.png)
+![APP首页4](https://github.com/hopeaktian/demo/blob/master/rooins4.png)
+
 ## 1. 简介
 ### 理念 
 袋鼠打印是一个互联网在线共享打印平台，此平台旨在将普通打印店的打印机连接至我们的平台上，然后使用户可以通过我们的平台快速找到附近最近的打印点，再使用APP远程提交打印文件，打印点打印完成后再通知用户前往打印店领取打印好的文件。
