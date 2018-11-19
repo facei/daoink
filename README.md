@@ -1,5 +1,5 @@
 # rooins
-- 袋鼠打印，在线共享打印平台 
+- 袋鼠打印，在线共享打印平台: http://rooins.careyou.xin
 
 ![APP首页1](https://github.com/hopeaktian/demo/blob/master/rooins1.png)
 ![APP首页2](https://github.com/hopeaktian/demo/blob/master/rooins2.png)
