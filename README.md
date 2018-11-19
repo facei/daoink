@@ -18,14 +18,14 @@
 3. 服务端：centos7 apache(或Nginx)
 4. 硬件：raspberry3B(树莓派), 普通打印机
 ### APP的安装部署
-#### 1. 下载源码到服务器, 下载目录自定义, 此文全篇以```/var/www/```为例子\
+#### 1. 下载源码到服务器, 下载目录自定义, 此文全篇以```/var/www/```为例子
 ``cd /var/www``\
 ``git clone https://github.com/hopeaktian/rooins.git``
-#### 2. 创建python2.7 虚拟环境 \
+#### 2. 创建python2.7 虚拟环境 
 1. 安装 virtualenv 工具
  - centos: ``sudo yum install virtualenv -y``
- - debian: ``sudo apt-get install virtualenv -y`` \
-2. 使用virtualenv创建虚拟环境，注意：先cd进入rooins 项目目录再执行virtualenv命令 \
+ - debian: ``sudo apt-get install virtualenv -y`` 
+2. 使用virtualenv创建虚拟环境，注意：先cd进入rooins 项目目录再执行virtualenv命令 
  ``cd /var/www/rooins`` \
  ``virtualenv env -p /usr/bin/python2.7``
 #### 3. 安装此项目的python依赖包
