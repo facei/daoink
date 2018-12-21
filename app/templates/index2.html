@@ -234,9 +234,11 @@
                                             {% if user_order[i].Print_Status == 0 %}
                                                 <span class="weui-form-preview__value" style="color: red">待支付</span>
                                             {% elif user_order[i].Print_Status == 1 %}
-                                                <span class="weui-form-preview__value" style="color: #3cc51f">已支付，待打印</span>
+                                                <span class="weui-form-preview__value" style="color: blue">已支付，等待加入打印队列</span>
                                             {% elif user_order[i].Print_Status == 2 %}
-                                                <span class="weui-form-preview__value" style="color: #0894ec">已打印</span>
+                                                <span class="weui-form-preview__value" style="color: yellow">已加入打印队列，正在排队等待</span>
+                                            {% elif user_order[i].Print_Status == 3 %}
+                                                <span class="weui-form-preview__value" style="color: #36af4b">已打印，请尽快前往打印点取走文件</span>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -336,13 +338,13 @@
 	                                    $("#orderstatus").text("待支付");
 	                                    $("#orderstatus").css("color","red")
 	                                }else if(data.objects[j].Print_Status === 1){
-	                                    $("#orderstatus").text("等待加入打印队列");
+	                                    $("#orderstatus").text("已支付，等待加入打印队列");
 	                                    $("#orderstatus").css("color","blue")
 	                                }else if(data.objects[j].Print_Status === 2){
-	                                    $("#orderstatus").text("正在打印队列中，等待打印");
+	                                    $("#orderstatus").text("已加入打印队列，正在排队等待");
 	                                    $("#orderstatus").css("color","yellow")
 	                                }else if(data.objects[j].Print_Status === 3){
-	                                    $("#orderstatus").text("已经打印,请尽快前往打印点取走文件");
+	                                    $("#orderstatus").text("已打印,请尽快前往打印点取走文件");
 	                                    $("#orderstatus").css("color","#36af4b")
 	                                }
 	
@@ -353,7 +355,7 @@
 	                                mid = mid.replace('filename','');
 	                                mid = mid.replace('orderdate','');
 	                                mid = mid.replace('orderplace','');
-	                                mid = mid.replace('orderstaus','');
+	                                mid = mid.replace('orderstatus','');
 	                                var order=document.createElement("r");
 	                                order.innerHTML=mid;
 	
