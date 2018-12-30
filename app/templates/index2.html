@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Roo-Ins</title>
+    <title>道墨云印</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -28,9 +28,12 @@
 			border-color: #E9E9E9;
 			margin: auto;
 			background-color: #FAFAFA;
-			height: 300px;
-			border-bottom-left-radius: 5em;
-			border-bottom-right-radius: 0.5em;
+			height: 200px;
+            width: 200px;
+{#			border-bottom-left-radius: 5em;#}
+{#            border-bottom-right-radius: 0.5em;#}
+
+            border-radius: 1.4em;
 		}
 	    .swiper-container {
 	        width: 100%;
@@ -43,7 +46,7 @@
 </head>
 
 <body ontouchstart>
-    <script src="../static/lib/jquery-2.1.4.js"></script>
+    <script src="/static/lib/jquery-2.1.4.js"></script>
     <script>
         var UserName = '{{ g.current_userphone }}' // 后端数据
     </script>
@@ -53,28 +56,29 @@
 	        <!--页面一-->
 	        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 	            <header class='demos-header'>
-	                <h1 class="demos-title">袋鼠打印</h1>
+	                <h1 class="demos-title">道墨云印</h1>
 	                <p class='demos-sub-title'>免排队，可预约的共享打印</p>
 	            </header>
 	
-	            <table bordercolor="1px" cellspacing="10px">
+	            <table bordercolor="1px" cellspacing="5px">
 	                <tr><td>
 	                    <a href="/select">
-	                        <div>
-	                            <img src="../static/images/print.png" height="200px" alt="">
+	                        <div class="text-center">
+	                            <img src="/static/images/print.png" height="200px" alt="">
+                                <img src="/static/font/arrow-up.svg" height=20px">
 	                        </div>
 	                        <p class="weui-grid__label">
-	                            <font size="5" face="arial rounded mt bold" color="#007AFF">打印入口</font>
+	                            <font size="3" face="arial rounded mt bold" color="#1296db">打印入口</font>
 	                        </p>
 	                    </a>
 	                </td></tr>
 	            </table>
-	            <div class="weui-footer">
-	                <p class="weui-footer__links">
-	                    <a href=" " class="weui-footer__link">Roo-Ins首页</a>
-	                </p>
-	                <p class="weui-footer__text">Copyright © 2018 rooins.careyou.xin</p>
-	            </div>
+{#	            <div class="weui-footer">#}
+{#	                <p class="weui-footer__links">#}
+{#	                    <a href=" " class="weui-footer__link">Roo-Ins首页</a>#}
+{#	                </p>#}
+{#	                <p class="weui-footer__text">Copyright © 2018 www.daoink.com</p>#}
+{#	            </div>#}
 	            <br>
 	            <br>
 	        </div>
@@ -101,9 +105,9 @@
 			      <!-- Additional required wrapper -->
 			      <div class="swiper-wrapper">
 			        <!-- Slides -->
-			        <div class="swiper-slide"><img src="../static/images/bg3.jpg" /></div>
-			        <div class="swiper-slide"><img src="../static/images/bg7.jpg" /></div>
-			        <div class="swiper-slide"><img src="../static/images/bg6.jpg"/></div>
+			        <div class="swiper-slide"><img src="/static/images/bg3.jpg" /></div>
+			        <div class="swiper-slide"><img src="/static/images/bg7.jpg" /></div>
+			        <div class="swiper-slide"><img src="/static/images/bg6.jpg"/></div>
 			      </div>
 			      <!-- If we need pagination -->
 			      <div class="swiper-pagination"></div>
@@ -112,7 +116,7 @@
 			    <div class="weui-grids" style="background-color: #EEEEEE;border-top-left-radius: 1em;border-top-right-radius: 1em;z-index: 999;">
 			      <a href="/detailedu" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_edu.png" alt="">
+			          <img src="/static/images/icon_nav_edu.png" alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	高等教育
@@ -120,7 +124,7 @@
 			      </a>
 			      <a href="/detailtest" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_test.png"  alt="">
+			          <img src="/static/images/icon_nav_test.png"  alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	资格考试
@@ -128,7 +132,7 @@
 			      </a>
 			      <a href="/detailreport" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_report.png" alt="">
+			          <img src="/static/images/icon_nav_report.png" alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	行业报告
@@ -136,7 +140,7 @@
 			      </a>			      
 			      <a href="/detailppt" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_ppt.png" alt="">
+			          <img src="/static/images/icon_nav_ppt.png" alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	PPT
@@ -144,7 +148,7 @@
 			      </a>
 			      <a href="/detaillaw" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_swiper.png" alt="">
+			          <img src="/static/images/icon_nav_swiper.png" alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	法律文书
@@ -152,7 +156,7 @@
 			      </a>
 			      <a href="/detailjob" class="weui-grid js_grid">
 			        <div class="weui-grid__icon">
-			          <img src="../static/images/icon_nav_resume.png" alt="">
+			          <img src="/static/images/icon_nav_resume.png" alt="">
 			        </div>
 			        <p class="weui-grid__label">
 			          	求职简历
@@ -165,7 +169,7 @@
 				  <div class="weui-panel__bd">
 				    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
 				      <div class="weui-media-box__hd">
-				        <img class="weui-media-box__thumb" src="../static/images/roo.gif">
+				        <img class="weui-media-box__thumb" src="/static/images/roo.gif">
 				      </div>
 				      <div class="weui-media-box__bd">
 				        <h4 class="weui-media-box__title">关于</h4>
@@ -174,7 +178,7 @@
 				    </a>
 				    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
 				      <div class="weui-media-box__hd">
-				        <img class="weui-media-box__thumb" src="../static/images/roo.gif">
+				        <img class="weui-media-box__thumb" src="/static/images/roo.gif">
 				      </div>
 				      <div class="weui-media-box__bd">
 				        <h4 class="weui-media-box__title">使用指南</h4>
@@ -193,7 +197,7 @@
 	
 	        <!--页面三-->
 	        <div id="tab3" class="weui-tab__bd-item" style="background-color: #EEEEEE;">
-	            <header class='demos-header' style="background-image: url(../static/images/bg2.jpg);background-size: 100%;background-position: 100% 30%;">
+	            <header class='demos-header' style="background-image: url(/static/images/bg2.jpg);background-size: 100%;background-position: 100% 30%;">
 	                <h1 style="color: #52A341;margin-left: 16px;margin-top:15px;margin-bottom:10px;font-size: x-large;">历史订单</h1>                
 	            </header>
                 <div id="firstpage">
@@ -382,7 +386,7 @@
 					        <ul>
 					          <li>
 					            <div href="#" class="item-content">
-					              <div class="item-media"><img src="../static/images/roo.gif" width="80"></div>
+					              <div class="item-media"><img src="/static/images/roo.gif" width="80"></div>
 					              <div class="item-inner">
 					                <div class="item-title-row">
 					                  <div class="item-title" style="margin-top: 5px;">{{ g.current_userphone }}</div>
@@ -402,7 +406,7 @@
 					        </ul>
 					      </div>
                         <a href="/join">
-					      <div class="row text-center" style="background-image: url(../static/images/bg4.jpg);background-size:100% 115%;">
+					      <div class="row text-center" style="background-image: url(/static/images/bg4.jpg);background-size:100% 115%;">
 					        <div class="col-60">
 					          <h4 class="color-gray">——加入我们</h4>
 					          <div class="color-gray">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;让闲置的打印机产生价值</div>
@@ -450,25 +454,25 @@
 	        <div class="weui-tabbar">
 	            <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
 	                <div class="weui-tabbar__icon">
-	                    <img src="../static/images/home.png" alt="">
+	                    <img src="/static/images/home.png" alt="">
 	                </div>
 	                <p class="weui-tabbar__label">首页</p>
 	            </a>
 	            <a href="#tab2" class="weui-tabbar__item">
 	                <div class="weui-tabbar__icon">
-	                    <img src="../static/images/data.png" alt="">
+	                    <img src="/static/images/data.png" alt="">
 	                </div>
 	                <p class="weui-tabbar__label">资料共享</p>
 	            </a>
 	            <a href="#tab3" class="weui-tabbar__item">
 	                <div class="weui-tabbar__icon">
-	                    <img src="../static/images/icon_nav_article.png" alt="">
+	                    <img src="/static/images/icon_nav_article.png" alt="">
 	                </div>
 	                <p class="weui-tabbar__label">订单</p>
 	            </a>
 	            <a href="#tab4" class="weui-tabbar__item">
 	                <div class="weui-tabbar__icon">
-	                    <img src="../static/images/member.png" alt="">
+	                    <img src="/static/images/member.png" alt="">
 	                </div>
 	                <p class="weui-tabbar__label">我的</p>
 	            </a>
@@ -482,7 +486,7 @@
 	    }
 	</style>
 	
-	<script src="../static/lib/fastclick.js"></script>
+	<script src="/static/lib/fastclick.js"></script>
 	<script>
 	    $(function() {
 	        FastClick.attach(document.body);
@@ -494,8 +498,8 @@
 	        window.location.href='/join';
 	    });
 	</script>
-	<script src="../static/js/jquery-weui.js"></script>
-    <script src="../static/js/swiper.js"></script>
+	<script src="/static/js/jquery-weui.js"></script>
+    <script src="/static/js/swiper.js"></script>
 
     <script>
       $(".swiper-container").swiper({
