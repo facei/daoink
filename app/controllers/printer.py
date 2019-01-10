@@ -75,14 +75,6 @@ def select():
                 error = 1
                 return render_template('select.html', now=now, error=error)
 
-
-
-
-
-
-        data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
-                "print_way": print_way, "time_way": time_way, "cost": cost, "pageCount": pageCount}
-
         # 写入数据库
         user = User.query.filter(User.Tel_Number == g.current_userphone).first()
         order_forsql = Order()
@@ -108,6 +100,9 @@ def select():
 
         param = (float(param) + 111)*73*1.3
 
+        tradeid = str(g.current_user.Tel_Number)+"_" + now
+        data = {"printfile": printfile, "new_filename": new_filename, "place": place, "copies": copies, "direction": direction, "colour": colour, "paper_size": paper_size,
+                "print_way": print_way, "time_way": time_way, "cost": cost, "pageCount": pageCount, "tradeid": new_filename}
 
 
         return render_template('confirm.html', data=data, param=param)
@@ -117,25 +112,28 @@ def select():
 
 
 
-@printer.route('/result', methods=['GET', 'POST'])
-def result():
-    global result
-    result = 0
-    # user = User.query.filter(User.Tel_Number == g.current_userphone).first()
-    # user_id = user.Id
-    trade_number = request.args.get('out_trade_no')
-    param = request.args.get('param')
-    param = float(param)/1.3/73-111
-    result_order = Order.query.filter(Order.Id == param).first()
-    if result_order:
-        result_order.Print_Status = 1
-        result_order.Trade_Number = trade_number
-        db.session.add(result_order)
-        db.session.commit()
-        result = 1
+# @printer.route('/result', methods=['GET', 'POST'])
+# def result():
+#     global result
+#     result = 0
+#     # user = User.query.filter(User.Tel_Number == g.current_userphone).first()
+#     # user_id = user.Id
+#     trade_number = request.args.get('out_trade_no')
+#     param = request.args.get('param')
+#     param = float(param)/1.3/73-111
+#     result_order = Order.query.filter(Order.Id == param).first()
+#     if result_order:
+#         result_order.Print_Status = 1
+#         result_order.Trade_Number = trade_number
+#         db.session.add(result_order)
+#         db.session.commit()
+#         result = 1
+#
+#     return render_template('result.html', result=result)
 
-    return render_template('result.html', result=result)
-
-@printer.route('/test', methods=['GET', 'POST'])
-def test():
-    return render_template('test.html')
+# @printer.route('/test', methods=['GET', 'POST'])
+# def test():
+#     data = {"printfile": 'printfile', "new_filename": 'new_filename', "place": 'place', "copies": 'copies', "direction": 'direction', "colour": 'colour', "paper_size": 'paper_size',
+#             "print_way": 'print_way', "time_way": 'time_way', "cost": 'cost', "pageCount": 'pageCount'}
+#     param = None
+#     return render_template('confirm.html', data=data, param=param)
