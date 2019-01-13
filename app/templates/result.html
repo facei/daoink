@@ -62,13 +62,15 @@
       <h1 style="margin-top: 50px;text-align:center;"></h1>
     </article>   
 	{% if result == 1 %}
-      <div class="icon-box">
-        <i class="weui-icon-success weui-icon_msg"></i>
-        <div class="icon-box__ctn">
-          <h3 class="icon-box__title" style="color: green;">支付成功！</h3>
-          <p class="icon-box__desc"></p>
-        </div>
-      </div>
+          <div class="icon-box">
+              <div>
+                <i class="weui-icon-success weui-icon_msg"></i>
+                <div class="icon-box__ctn">
+                  <h3 class="icon-box__title" style="color: green;">支付成功！</h3>
+                  <p class="icon-box__desc"></p>
+                </div>
+              </div>
+          </div>
 	{% else %}
 	  <div class="icon-box">
         <i class="weui-icon-warn weui-icon_msg"></i>
@@ -78,7 +80,7 @@
         </div>
       </div>
 	{% endif %}
-    
+
     <script src="../static/lib/jquery-2.1.4.js"></script>
 	<script src="../static/lib/fastclick.js"></script>
 	<script>
@@ -105,6 +107,6 @@
       })
     </script>  
     
-	<script src="../static/js/jquery-weui.js"></script>	
+	<script src="../static/js/jquery-weui.js"></script>
 </body>
 </html>
